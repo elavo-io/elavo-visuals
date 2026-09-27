@@ -1,0 +1,33 @@
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+# 101 frames, 0 through 100, covering the 4 second write-on.
+# Each frame is held for two refreshes so the sequence lasts about
+# four seconds when Plymouth refreshes at 50 Hz. The last frame stays up.
+frame_count = 100;
+
+for (i = 0; i <= frame_count; i++)
+  animation_image[i] = Image("animation-" + i + ".png");
+
+animation_sprite = Sprite(animation_image[0]);
+
+fun place_sprite()
+  {
+    animation_sprite.SetX(Window.GetWidth() / 2 - animation_image[frame].GetWidth() / 2);
+    animation_sprite.SetY(Window.GetHeight() / 2 - animation_image[frame].GetHeight() / 2);
+  }
+
+frame = 0;
+tick = 0;
+place_sprite();
+
+fun refresh_callback()
+  {
+    animation_sprite.SetImage(animation_image[frame]);
+    place_sprite();
+    tick++;
+    if (tick % 2 == 0 && frame < frame_count)
+      frame++;
+  }
+
+Plymouth.SetRefreshFunction(refresh_callback);
