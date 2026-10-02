@@ -1,44 +1,48 @@
 Window.SetBackgroundTopColor(0, 0, 0);
 Window.SetBackgroundBottomColor(0, 0, 0);
 
-# 101 frames, 0 through 100, covering the 4 second write-on.
-# Each frame is held for two refreshes so the sequence lasts about
-# four seconds when Plymouth refreshes at 50 Hz. The last frame stays up.
-frame_count = 100;
-
-for (i = 0; i <= frame_count; i++)
-  animation_image[i] = Image("animation-" + i + ".png");
-
-animation_sprite = Sprite();
-
-# The source frames are 1004x408. At native size that wordmark covers
-# most of a 1366x768 panel. Fit it to the screen and keep it centered.
-fun display_frame()
+# Shutdown and suspend keep the black background. The write-on plays on boot only.
+if (Plymouth.GetMode() == "boot")
   {
-    img = animation_image[frame];
-    src_w = img.GetWidth();
-    src_h = img.GetHeight();
-    max_w = Window.GetWidth() * 0.32;
-    max_h = Window.GetHeight() * 0.22;
-    scale = max_w / src_w;
-    if (src_h * scale > max_h)
-      scale = max_h / src_h;
-    scaled = img.Scale(src_w * scale, src_h * scale);
-    animation_sprite.SetImage(scaled);
-    animation_sprite.SetX(Window.GetWidth() / 2 - scaled.GetWidth() / 2);
-    animation_sprite.SetY(Window.GetHeight() / 2 - scaled.GetHeight() / 2);
-  }
+    # 101 frames, 0 through 100, covering the 4 second write-on.
+    # Each frame is held for two refreshes so the sequence lasts about
+    # four seconds when Plymouth refreshes at 50 Hz. The last frame stays up.
+    frame_count = 100;
 
-frame = 0;
-tick = 0;
-display_frame();
+    for (i = 0; i <= frame_count; i++)
+      animation_image[i] = Image("animation-" + i + ".png");
 
-fun refresh_callback()
-  {
+    animation_sprite = Sprite();
+
+    # The source frames are 1004x408. At native size that wordmark covers
+    # most of a 1366x768 panel. Fit it to the screen and keep it centered.
+    fun display_frame()
+      {
+        img = animation_image[frame];
+        src_w = img.GetWidth();
+        src_h = img.GetHeight();
+        max_w = Window.GetWidth() * 0.32;
+        max_h = Window.GetHeight() * 0.22;
+        scale = max_w / src_w;
+        if (src_h * scale > max_h)
+          scale = max_h / src_h;
+        scaled = img.Scale(src_w * scale, src_h * scale);
+        animation_sprite.SetImage(scaled);
+        animation_sprite.SetX(Window.GetWidth() / 2 - scaled.GetWidth() / 2);
+        animation_sprite.SetY(Window.GetHeight() / 2 - scaled.GetHeight() / 2);
+      }
+
+    frame = 0;
+    tick = 0;
     display_frame();
-    tick++;
-    if (tick % 2 == 0 && frame < frame_count)
-      frame++;
-  }
 
-Plymouth.SetRefreshFunction(refresh_callback);
+    fun refresh_callback()
+      {
+        display_frame();
+        tick++;
+        if (tick % 2 == 0 && frame < frame_count)
+          frame++;
+      }
+
+    Plymouth.SetRefreshFunction(refresh_callback);
+  }
