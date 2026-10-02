@@ -9,22 +9,33 @@ frame_count = 100;
 for (i = 0; i <= frame_count; i++)
   animation_image[i] = Image("animation-" + i + ".png");
 
-animation_sprite = Sprite(animation_image[0]);
+animation_sprite = Sprite();
 
-fun place_sprite()
+# The source frames are 1004x408. At native size that wordmark covers
+# most of a 1366x768 panel. Fit it to the screen and keep it centered.
+fun display_frame()
   {
-    animation_sprite.SetX(Window.GetWidth() / 2 - animation_image[frame].GetWidth() / 2);
-    animation_sprite.SetY(Window.GetHeight() / 2 - animation_image[frame].GetHeight() / 2);
+    img = animation_image[frame];
+    src_w = img.GetWidth();
+    src_h = img.GetHeight();
+    max_w = Window.GetWidth() * 0.32;
+    max_h = Window.GetHeight() * 0.22;
+    scale = max_w / src_w;
+    if (src_h * scale > max_h)
+      scale = max_h / src_h;
+    scaled = img.Scale(src_w * scale, src_h * scale);
+    animation_sprite.SetImage(scaled);
+    animation_sprite.SetX(Window.GetWidth() / 2 - scaled.GetWidth() / 2);
+    animation_sprite.SetY(Window.GetHeight() / 2 - scaled.GetHeight() / 2);
   }
 
 frame = 0;
 tick = 0;
-place_sprite();
+display_frame();
 
 fun refresh_callback()
   {
-    animation_sprite.SetImage(animation_image[frame]);
-    place_sprite();
+    display_frame();
     tick++;
     if (tick % 2 == 0 && frame < frame_count)
       frame++;
