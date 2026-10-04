@@ -16,3 +16,4 @@ Icons in this folder that were sourced from third parties or imported from offic
 | --- | --- | --- | --- | --- |
 | HandBrake | `unsorted/handbrake.png` | [HandBrake](https://github.com/HandBrake/HandBrake) logo | The HandBrake Team | [GPL-2.0](https://github.com/HandBrake/HandBrake/blob/master/LICENSE) |
 | Telegram | `unsorted/telegram.png` | Official [Telegram](https://telegram.org) logo | Telegram FZ-LLC | Trademark of Telegram; used for identification only |
+| Strawberry Music Player | `unsorted/strawberry-music.png` | Official [Strawberry Music Player](https://github.com/strawberrymusicplayer/strawberry) logo | Jonas Kvinge and Strawberry contributors | [GPL-3.0](https://github.com/strawberrymusicplayer/strawberry/blob/master/COPYING) |
