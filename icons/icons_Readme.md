@@ -12,4 +12,6 @@ Icons in this folder that were sourced from third parties or imported from offic
 
 ### Third-party assets
 
-_None yet._
+| Icon | File | Asset used | Owner | License |
+| --- | --- | --- | --- | --- |
+| HandBrake | `unsorted/handbrake.png` | [HandBrake](https://github.com/HandBrake/HandBrake) logo | The HandBrake Team | [GPL-2.0](https://github.com/HandBrake/HandBrake/blob/master/LICENSE) |
