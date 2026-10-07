@@ -29,3 +29,4 @@ Icons in this folder that were sourced from third parties or imported from offic
 | Bottles | `unsorted/bottles.png` | Official [Bottles](https://usebottles.com/) logo | The Bottles contributors | [GPL-3.0](https://github.com/bottlesdevs/Bottles/blob/main/COPYING.md) |
 | OBS Studio | `unsorted/obs-studio.png` | Official [OBS Studio](https://github.com/obsproject/obs-studio) logo, unchanged, in a recreated icon | The OBS Project | [GPL-2.0](https://github.com/obsproject/obs-studio/blob/master/COPYING) |
 | Lutris | `unsorted/lutris.png` | Official [Lutris](https://github.com/lutris/lutris) logo | The Lutris contributors | [GPL-3.0](https://github.com/lutris/lutris/blob/master/LICENSE) |
+| Firefox | `unsorted/firefox.png` | Official [Firefox](https://www.mozilla.org/firefox/) logo | Mozilla Foundation | [Mozilla Trademark Policy](https://www.mozilla.org/foundation/trademarks/policy/) |
