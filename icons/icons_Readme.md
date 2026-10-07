@@ -26,3 +26,6 @@ Icons in this folder that were sourced from third parties or imported from offic
 | VLC media player | `unsorted/vlc.png` | Recreation of the [VLC](https://www.videolan.org/vlc/) cone logo | VideoLAN | Trademark of VideoLAN; used for identification only |
 | VSCodium | `unsorted/vscodium.png` | Official [VSCodium](https://github.com/VSCodium/vscodium) logo | The VSCodium contributors | [MIT](https://github.com/VSCodium/vscodium/blob/master/LICENSE) |
 | Spotify | `unsorted/spotify.png` | Official [Spotify](https://www.spotify.com) logo | Spotify AB | Trademark of Spotify; used for identification only |
+| Bottles | `unsorted/bottles.png` | Official [Bottles](https://usebottles.com/) logo | The Bottles contributors | [GPL-3.0](https://github.com/bottlesdevs/Bottles/blob/main/COPYING.md) |
+| OBS Studio | `unsorted/obs-studio.png` | Official [OBS Studio](https://github.com/obsproject/obs-studio) logo, unchanged, in a recreated icon | The OBS Project | [GPL-2.0](https://github.com/obsproject/obs-studio/blob/master/COPYING) |
+| Lutris | `unsorted/lutris.png` | Official [Lutris](https://github.com/lutris/lutris) logo | The Lutris contributors | [GPL-3.0](https://github.com/lutris/lutris/blob/master/LICENSE) |
