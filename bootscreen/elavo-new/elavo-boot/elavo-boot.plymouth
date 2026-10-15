@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Elavo Boot
+Description=Elavo boot splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/elavo-boot
+ScriptFile=/usr/share/plymouth/themes/elavo-boot/elavo-boot.script
