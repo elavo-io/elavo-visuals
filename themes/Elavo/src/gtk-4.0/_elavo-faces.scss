@@ -1,0 +1,81 @@
+// Control faces for libadwaita apps. The GTK theme gets these from the
+// vendored widget rules; libadwaita draws its own, so they are stated here
+// with the same mixins.
+//
+// Selectors stay at element specificity so that the shapes partial
+// (headerbar buttons are flat) and the window buttons still win.
+
+button {
+  font-weight: normal;
+  border: 1px solid;
+  @include button(normal);
+
+  &:hover { @include button(hover); }
+  &:active,
+  &:checked { @include button(active); }
+  &:checked:hover { @include button(checked-hover); }
+  &:disabled { @include button(insensitive); }
+  &:backdrop { @include button(backdrop); }
+  &:backdrop:disabled { @include button(backdrop-insensitive); }
+}
+
+button.flat {
+  @include button(undecorated);
+
+  &:hover { @include button(undecorated-hover); }
+  &:active,
+  &:checked { @include button(undecorated-active); }
+  &:backdrop,
+  &:disabled { @include button(undecorated); }
+}
+
+button.osd {
+  @include button(osd);
+
+  &:hover { @include button(osd-hover); }
+  &:active,
+  &:checked { @include button(osd-active); }
+  &:disabled { @include button(osd-insensitive); }
+}
+
+@each $b_type, $b_color in (suggested-action, $selected_bg_color),
+                           (destructive-action, $destructive_color) {
+  button.#{$b_type} {
+    @include button(normal, $b_color, $selected_fg_color);
+
+    &:hover { @include button(hover, $b_color, $selected_fg_color); }
+    &:active,
+    &:checked { @include button(active, $b_color, $selected_fg_color); }
+    &:disabled { @include button(insensitive); }
+    &:backdrop { @include button(backdrop); }
+  }
+}
+
+entry,
+spinbutton:not(.vertical) {
+  border: 1px solid;
+  border-radius: $button_radius;
+  @include entry(normal);
+
+  &:focus-within { @include entry(focus); }
+  &:disabled { @include entry(insensitive); }
+}
+
+spinbutton:not(.vertical) > button.image-button,
+entry > button {
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+check,
+radio {
+  padding: 0;
+  border: 1px solid;
+  @include check(normal, $elavo-control-bg, $checkradio_fg_color);
+
+  &:checked,
+  &:indeterminate {
+    @include check(normal, $checkradio_bg_color, $checkradio_fg_color, $checked: true);
+  }
+}

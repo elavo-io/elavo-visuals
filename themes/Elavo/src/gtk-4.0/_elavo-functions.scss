@@ -1,0 +1,62 @@
+// Sass color functions that also accept a CSS color expression.
+//
+// The accent is `var(--accent-bg-color)`, which Sass cannot compute with.
+// These replace the built-ins the vendored stylesheet calls. A real color
+// is computed now, exactly as the built-in would. Anything else becomes
+// CSS that GTK computes when it draws, so the accent can change at runtime.
+
+@function _elavo-is-color($c) {
+  @return type-of($c) == 'color';
+}
+
+@function _elavo-num($v) {
+  @return $v / ($v * 0 + 1);
+}
+
+@function darken($c, $amount) {
+  @if _elavo-is-color($c) { @return adjust-color($c, $lightness: -$amount); }
+  @return unquote("hsl(from #{$c} h s calc(l - #{_elavo-num($amount)}))");
+}
+
+@function lighten($c, $amount) {
+  @if _elavo-is-color($c) { @return adjust-color($c, $lightness: $amount); }
+  @return unquote("hsl(from #{$c} h s calc(l + #{_elavo-num($amount)}))");
+}
+
+@function desaturate($c, $amount) {
+  @if _elavo-is-color($c) { @return adjust-color($c, $saturation: -$amount); }
+  @return unquote("hsl(from #{$c} h calc(s - #{_elavo-num($amount)}) l)");
+}
+
+@function transparentize($c, $amount) {
+  @if _elavo-is-color($c) { @return adjust-color($c, $alpha: -$amount); }
+  @return unquote("rgb(from #{$c} r g b / calc(alpha - #{$amount}))");
+}
+
+@function opacify($c, $amount) {
+  @if _elavo-is-color($c) { @return adjust-color($c, $alpha: $amount); }
+  @return unquote("rgb(from #{$c} r g b / calc(alpha + #{$amount}))");
+}
+
+@function invert($c) {
+  @if _elavo-is-color($c) {
+    @return rgba(255 - red($c), 255 - green($c), 255 - blue($c), alpha($c));
+  }
+  @return unquote("rgb(from #{$c} calc(255 - r) calc(255 - g) calc(255 - b) / alpha)");
+}
+
+// Same weighting as Sass's built-in mix().
+@function mix($c1, $c2, $weight: 50%) {
+  @if _elavo-is-color($c1) and _elavo-is-color($c2) {
+    $p: _elavo-num($weight) / 100;
+    $w: $p * 2 - 1;
+    $a: alpha($c1) - alpha($c2);
+    $w1: (if($w * $a == -1, $w, ($w + $a) / (1 + $w * $a)) + 1) / 2;
+    $w2: 1 - $w1;
+    @return rgba(round(red($c1) * $w1 + red($c2) * $w2),
+                 round(green($c1) * $w1 + green($c2) * $w2),
+                 round(blue($c1) * $w1 + blue($c2) * $w2),
+                 alpha($c1) * $p + alpha($c2) * (1 - $p));
+  }
+  @return unquote("color-mix(in srgb, #{$c1} #{_elavo-num($weight) * 1%}, #{$c2})");
+}

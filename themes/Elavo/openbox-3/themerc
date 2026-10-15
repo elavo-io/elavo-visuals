@@ -1,0 +1,19 @@
+# Elavo server-side decorations for labwc.
+#
+# Button art is the PNGs from ui/window-decorations, copied here so the
+# theme directory installs as one piece. labwc loads the names it knows
+# (close-active.png, iconify_hover-inactive.png, max_toggled-active.png,
+# and so on), which are symlinks to those PNGs. An unfocused window shows
+# close-defocused-500px.png on every button; hovering one shows its hover
+# art. labwc lights only the button under the pointer.
+#
+# The bar matches client-side title bars: 46px tall, with the first button
+# 16px from the top and from the outer left edge (15px plus the 1px border).
+# labwc's bar is the title font's 20px plus the vertical padding on each
+# side. The window corner radius and the title text are still open.
+
+window.button.width: 14
+window.button.height: 14
+window.button.spacing: 8
+window.titlebar.padding.width: 15
+window.titlebar.padding.height: 13

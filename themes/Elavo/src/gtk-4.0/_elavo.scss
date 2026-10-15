@@ -1,0 +1,23 @@
+// Elavo overrides, loaded after the vendored widget rules. Metrics and the
+// places macOS puts the accent: the selected sidebar row, the highlighted
+// menu item, checked controls, the default button, focus rings.
+
+:root {
+  --accent-bg-color: #{$elavo-accent-bg-default};
+  --accent-fg-color: #{$elavo-accent-fg-default};
+  --accent-color: var(--accent-bg-color);
+}
+
+window {
+  font-family: $elavo-font-family;
+}
+
+@import 'elavo-shapes';
+@import 'elavo-window-buttons';
+
+// GTK's fallback title bar, for a window that sets none, is the same 46px
+// bar as a header bar, so the window buttons sit 16px from the top and left.
+headerbar.default-decoration {
+  min-height: 46px;
+  padding: 0 6px;
+}

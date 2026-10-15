@@ -1,0 +1,83 @@
+// Window buttons for title bars an app draws itself. labwc draws the
+// server-side ones from openbox-3/.
+//
+// 14px buttons, 8px apart. Hovering any of the three lights all three, and
+// the hover art fades over 150ms. That includes an unfocused window, which
+// otherwise shows the defocused art on every button. A disabled button
+// keeps the defocused art and does not take the hover.
+
+$_buttons: (close: close, minimize: minimize, maximize: maximize);
+
+// Header bars are 46px, so a 14px button sits 16px below the top edge. The
+// side inset matches it: 6px of header-bar padding plus 10px here.
+windowcontrols {
+  border-spacing: 8px;
+}
+
+windowcontrols.start:not(.empty) {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+windowcontrols.end:not(.empty) {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+// Window buttons are image buttons, so `.image-button` here outranks the
+// image-button sizing in elavo-shapes in every state.
+windowcontrols > button,
+windowcontrols > button.image-button,
+windowcontrols > button.image-button:hover,
+windowcontrols > button.image-button:active,
+windowcontrols > button.image-button:checked,
+windowcontrols > button.image-button:backdrop,
+windowcontrols > button.image-button:disabled,
+headerbar.default-decoration windowcontrols > button.image-button {
+  min-width: 14px;
+  min-height: 14px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: none;
+  outline: none;
+  color: transparent;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  transition: background-image 150ms ease;
+}
+
+windowcontrols > button > image,
+windowcontrols > button:hover > image,
+windowcontrols > button:active > image,
+windowcontrols > button:checked > image,
+headerbar.default-decoration windowcontrols > button > image {
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  -gtk-icon-size: 14px;
+  background: none;
+  box-shadow: none;
+}
+
+@each $class, $art in $_buttons {
+  windowcontrols > button.#{$class} {
+    background-image: url("assets/#{$art}-default-500px.png");
+  }
+}
+
+windowcontrols > button:backdrop,
+windowcontrols > button:disabled {
+  background-image: url("assets/close-defocused-500px.png");
+}
+
+@each $class, $art in $_buttons {
+  windowcontrols:hover > button.#{$class}:not(:disabled) {
+    background-image: url("assets/#{$art}-hover-500px.png");
+  }
+}

@@ -1,0 +1,13 @@
+// Elavo, light. Builds gtk-4.0/gtk.css.
+
+$variant: 'light';
+$contrast: 'normal';
+
+@import 'elavo-functions';
+@import 'elavo-tokens';
+@import 'colors';
+@import 'drawing';
+@import 'elavo-drawing';
+@import 'common';
+@import 'colors-public';
+@import 'elavo';

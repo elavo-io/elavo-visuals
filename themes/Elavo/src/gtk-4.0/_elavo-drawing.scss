@@ -1,0 +1,313 @@
+// Elavo drawing mixins. These redefine upstream's mixins of the same name.
+// _common.scss is imported after this file, so its widget rules draw with
+// these. Same arguments and state names as upstream.
+
+// Focus rings sit outside the control.
+@mixin focus-ring($target: null, $width: 3px, $offset: 0px, $outer: true, $focus-state: 'focus:focus-visible', $fc: $focus_border_color) {
+  transition-property: outline, outline-width, outline-offset, outline-color;
+  transition-duration: 200ms;
+  animation-timing-function: ease-out;
+  & #{$target} {
+    outline: 0 solid transparent;
+    outline-offset: $offset;
+  }
+
+  &:#{$focus-state} #{$target} {
+    outline-color: $fc;
+    outline-width: $width;
+    outline-offset: $offset;
+  }
+}
+
+@mixin entry($t, $fc:$focus_border_color) {
+  @if $t==normal {
+    color: $text_color;
+    border-color: $borders_color;
+    background-color: $base_color;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.03);
+  }
+  @if $t==focus {
+    border-color: mix($fc, $borders_color, 50%);
+  }
+  @if $t==insensitive {
+    color: $insensitive_fg_color;
+    border-color: $insensitive_borders_color;
+    background-color: $insensitive_bg_color;
+    box-shadow: none;
+  }
+  @if $t==backdrop {
+    color: $backdrop_text_color;
+    border-color: $backdrop_borders_color;
+    background-color: $backdrop_base_color;
+  }
+  @if $t==backdrop-insensitive {
+    color: $backdrop_insensitive_color;
+    border-color: $backdrop_borders_color;
+    background-color: $insensitive_bg_color;
+  }
+  @if $t==osd {
+    color: $osd_text_color;
+    border-color: $osd_borders_color;
+    background-color: transparentize(opacify($osd_borders_color, 1), 0.5);
+    background-clip: padding-box;
+    box-shadow: none;
+  }
+  @if $t==osd-focus {
+    color: $osd_text_color;
+    border-color: $selected_bg_color;
+    background-color: transparentize(opacify($osd_borders_color, 1), 0.5);
+    background-clip: padding-box;
+  }
+  @if $t==osd-insensitive {
+    color: $osd_insensitive_fg_color;
+    border-color: $osd_borders_color;
+    background-color: $osd_insensitive_bg_color;
+    background-clip: padding-box;
+  }
+  @if $t==osd-backdrop {
+    color: $osd_text_color;
+    border-color: $osd_borders_color;
+    background-color: transparentize(opacify($osd_borders_color, 1), 0.5);
+    background-clip: padding-box;
+  }
+  @if $t==block_cursor {
+    color: $base_color;
+    background-color: $text_color;
+  }
+}
+
+// A push button is a white face with a hairline edge and a soft shadow.
+// Colored buttons (suggested, destructive) are filled. State changes are
+// drawn as a translucent layer over the face, so they work on any color,
+// including the runtime accent.
+@function _elavo-layer($c) {
+  @return linear-gradient(to bottom, $c, $c);
+}
+
+$_elavo_button_edge: rgba(0, 0, 0, 0.12);
+$_elavo_button_edge_bottom: rgba(0, 0, 0, 0.2);
+$_elavo_button_shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+$_elavo_colored_highlight: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+
+@mixin _elavo-face($c, $tc, $layer: none) {
+  $colored: $c != $_default_button_c;
+  color: $tc;
+  background-color: if($colored, $c, $elavo-control-bg);
+  @if $layer != none {
+    background-image: _elavo-layer($layer);
+  } @else {
+    background-image: if($colored, $_elavo_colored_highlight, none);
+  }
+  border-color: if($colored, rgba(0, 0, 0, 0.1), $_elavo_button_edge);
+  border-bottom-color: if($colored, rgba(0, 0, 0, 0.18), $_elavo_button_edge_bottom);
+}
+
+$_default_button_c: $elavo-control-bg;
+@mixin button($t, $c:$_default_button_c, $tc:$fg_color) {
+  $colored: $c != $_default_button_c;
+
+  @if $t==normal {
+    @include _elavo-face($c, $tc);
+    outline-color: $focus_border_color;
+    box-shadow: $_elavo_button_shadow;
+  }
+
+  @else if $t==hover {
+    @include _elavo-face($c, $tc, if($colored, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.025)));
+    box-shadow: $_elavo_button_shadow;
+  }
+
+  @else if $t==active {
+    @include _elavo-face($c, $tc, if($colored, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.1)));
+    box-shadow: none;
+  }
+
+  @else if $t==checked-hover {
+    @include _elavo-face($c, $tc, if($colored, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.14)));
+    box-shadow: none;
+  }
+
+  @else if $t==checked-active {
+    @include _elavo-face($c, $tc, if($colored, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)));
+    box-shadow: none;
+  }
+
+  @else if $t==insensitive {
+    color: if($colored, transparentize($tc, 0.4), $insensitive_fg_color);
+    background-color: if($colored, mix($c, $base_color, 50%), $elavo-control-bg);
+    background-image: none;
+    border-color: if($colored, transparent, rgba(0, 0, 0, 0.08));
+    box-shadow: none;
+  }
+
+  @else if $t==insensitive-active {
+    color: if($colored, transparentize($tc, 0.4), $insensitive_fg_color);
+    background-color: if($colored, mix($c, $base_color, 50%), $elavo-control-bg);
+    background-image: _elavo-layer(rgba(0, 0, 0, 0.06));
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: none;
+  }
+
+  @else if $t==backdrop {
+    // Colored buttons give up their color in an unfocused window.
+    color: if($colored, $backdrop_fg_color, $backdrop_fg_color);
+    background-color: $elavo-control-bg;
+    background-image: none;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+  }
+
+  @else if $t==backdrop-active {
+    color: $backdrop_fg_color;
+    background-color: $elavo-control-bg;
+    background-image: _elavo-layer(rgba(0, 0, 0, 0.08));
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+  }
+
+  @else if $t==backdrop-insensitive {
+    color: $backdrop_insensitive_color;
+    background-color: $elavo-control-bg;
+    background-image: none;
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: none;
+  }
+
+  @else if $t==backdrop-insensitive-active {
+    color: $backdrop_insensitive_color;
+    background-color: $elavo-control-bg;
+    background-image: _elavo-layer(rgba(0, 0, 0, 0.05));
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: none;
+  }
+
+  @else if $t==osd {
+    $_bg: if($colored, transparentize($c, 0.5), $osd_bg_color);
+    color: $osd_fg_color;
+    outline-color: $alt_focus_border_color;
+    border-color: $osd_borders_color;
+    background-color: transparent;
+    background-image: image($_bg);
+    background-clip: padding-box;
+  }
+
+  @else if $t==osd-hover {
+    $_bg: if($colored, transparentize($c, 0.3), rgba(60, 60, 60, 0.8));
+    color: white;
+    border-color: $osd_borders_color;
+    background-color: transparent;
+    background-image: image($_bg);
+    background-clip: padding-box;
+  }
+
+  @else if $t==osd-active {
+    $_bg: if($colored, $c, rgba(80, 80, 80, 0.85));
+    color: white;
+    border-color: $osd_borders_color;
+    background-color: transparent;
+    background-image: image($_bg);
+    background-clip: padding-box;
+    box-shadow: none;
+  }
+
+  @else if $t==osd-insensitive {
+    color: $osd_insensitive_fg_color;
+    border-color: $osd_borders_color;
+    background-color: transparent;
+    background-image: image($osd_insensitive_bg_color);
+    background-clip: padding-box;
+  }
+
+  @else if $t==osd-backdrop {
+    $_bg: if($colored, transparentize($c, 0.5), $osd_bg_color);
+    color: $osd_fg_color;
+    border-color: $osd_borders_color;
+    background-color: transparent;
+    background-image: image($_bg);
+    background-clip: padding-box;
+  }
+
+  @else if $t==undecorated {
+    border-color: transparent;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+  }
+
+  @else if $t==undecorated-hover {
+    border-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    background-color: $elavo-control-hover;
+  }
+
+  @else if $t==undecorated-active {
+    border-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    background-color: $elavo-control-pressed;
+  }
+}
+
+@mixin headerbar_fill($c:$headerbar_bg_color, $ov: none) {
+  @if $ov != none { background: $c $ov; }
+  @else { background: $c; }
+}
+
+// Checks and radios: a white box with a hairline edge, filled with the
+// accent when checked.
+@mixin check($t, $c:$checkradio_bg_color, $tc:$checkradio_fg_color, $checked: false) {
+  @if $t==normal {
+    background-clip: border-box;
+    background-color: if($checked, $c, $elavo-control-bg);
+    background-image: if($checked, $_elavo_colored_highlight, none);
+    border-color: if($checked, transparent, rgba(0, 0, 0, 0.22));
+    box-shadow: if($checked, none, $_elavo_button_shadow);
+    color: $tc;
+  }
+
+  @if $t==hover {
+    border-color: if($checked, transparent, rgba(0, 0, 0, 0.3));
+  }
+
+  @if $t==active {
+    background-image: _elavo-layer(rgba(0, 0, 0, if($checked, 0.15, 0.08)));
+    box-shadow: none;
+  }
+
+  @if $t==insensitive {
+    box-shadow: none;
+    background-color: if($checked, mix($c, $base_color, 45%), $insensitive_bg_color);
+    background-image: none;
+    border-color: if($checked, transparent, rgba(0, 0, 0, 0.12));
+    color: transparentize($tc, 0.2);
+  }
+
+  @if $t==backdrop {
+    background-image: none;
+    box-shadow: none;
+    color: $tc;
+  }
+
+  @if $t==backdrop-insensitive {
+    box-shadow: none;
+    color: transparentize($tc, 0.3);
+  }
+
+  @if $t==menu {
+   transform: scale(0.8);
+   border-width: 1.2px;
+   border-color: transparent;
+   box-shadow: none;
+   background-image: image(transparent);
+   color: $tc;
+  }
+
+  @if $t==menu-active {
+   transform: scale(0.8);
+   border-width: 1.2px;
+   color: $tc;
+   box-shadow: none;
+   background-image: image(transparent);
+  }
+}

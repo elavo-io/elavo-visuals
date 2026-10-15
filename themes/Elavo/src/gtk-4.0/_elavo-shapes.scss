@@ -1,0 +1,321 @@
+// Elavo metrics and accent placement. Shared by the GTK theme and, scoped
+// to libadwaita's containers, by the libadwaita sheet.
+
+// Popovers reset their font, so they name it again.
+popover.background,
+tooltip.background {
+  font-family: $elavo-font-family;
+}
+
+// Controls. Upstream's are 34px tall; Elavo's are 24px.
+
+button {
+  min-height: $elavo-control-height - 4px;
+  padding: 1px 10px;
+
+  &.image-button {
+    min-width: $elavo-control-height - 4px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  &.text-button {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  &.text-button.image-button {
+    padding-left: 6px;
+    padding-right: 6px;
+
+    label {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+  }
+
+  &.circular {
+    min-width: $elavo-control-height;
+    min-height: $elavo-control-height;
+  }
+}
+
+entry,
+spinbutton:not(.vertical) {
+  min-height: $elavo-control-height - 2px;
+}
+
+spinbutton:not(.vertical) > text {
+  padding: 0 6px;
+}
+
+spinbutton > button.image-button {
+  min-width: $elavo-control-height - 6px;
+}
+
+checkbutton.text-button {
+  padding: 2px;
+}
+
+check,
+radio {
+  padding: 0;
+  min-width: $elavo-check-size;
+  min-height: $elavo-check-size;
+  -gtk-icon-size: $elavo-check-size - 2px;
+}
+
+check {
+  border-radius: $elavo-check-radius;
+}
+
+// Switch: a pill track with a white knob inset 2px.
+
+switch {
+  border: none;
+  border-radius: 9999px;
+  padding: 0;
+  background-color: $elavo-trough;
+  color: transparent;
+  font-size: 0;
+
+  &:checked {
+    background-color: $selected_bg_color;
+    border: none;
+  }
+
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:checked:disabled {
+    background-color: mix($selected_bg_color, $base_color, 45%);
+  }
+
+  > slider,
+  &:hover > slider,
+  &:checked > slider,
+  &:disabled > slider {
+    min-width: $elavo-switch-height - 4px;
+    min-height: $elavo-switch-height - 4px;
+    margin: 2px;
+    border: none;
+    border-radius: 9999px;
+    background-color: white;
+    background-image: none;
+    box-shadow: $elavo-knob-shadow;
+  }
+
+  &:disabled > slider {
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+  }
+
+  > image {
+    opacity: 0;
+  }
+
+  headerbar & {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $elavo-trough;
+
+    &:checked { background-color: $selected_bg_color; }
+  }
+}
+
+// Scale: a thin track, an accent fill, and a white knob.
+
+scale {
+  > trough {
+    min-height: 4px;
+    border: none;
+    border-radius: 9999px;
+    background-color: $elavo-trough;
+
+    > highlight {
+      margin: 0;
+      border: none;
+      border-radius: 9999px;
+      background-color: $selected_bg_color;
+      background-image: none;
+    }
+
+    > slider,
+    > slider:hover,
+    > slider:active {
+      min-width: 18px;
+      min-height: 18px;
+      margin: -7px;
+      border: none;
+      border-radius: 9999px;
+      background-color: white;
+      background-image: none;
+      box-shadow: $elavo-knob-shadow;
+    }
+  }
+
+  &.vertical > trough {
+    min-width: 4px;
+    min-height: 0;
+  }
+}
+
+progressbar > trough {
+  border: none;
+  border-radius: 9999px;
+  background-color: $elavo-trough;
+
+  > progress {
+    margin: 0;
+    border: none;
+    border-radius: 9999px;
+    background-color: $selected_bg_color;
+    background-image: none;
+  }
+}
+
+progressbar.horizontal > trough {
+  min-height: 6px;
+
+  > progress { min-height: 6px; }
+}
+
+// Title bars: one flat color with a hairline under it. Buttons on the bar
+// are toolbar items: no face until hovered.
+
+headerbar {
+  background: $headerbar_bg_color;
+  border-color: $elavo-hairline;
+  box-shadow: none;
+
+  &:backdrop {
+    background: $headerbar_bg_color;
+    border-color: $elavo-hairline;
+  }
+
+  // Window buttons are left to the window-buttons partial.
+  :not(windowcontrols) > button:not(.suggested-action):not(.destructive-action) {
+    @include button(undecorated);
+
+    &:hover { @include button(undecorated-hover); }
+
+    &:active,
+    &:checked,
+    &:checked:hover { @include button(undecorated-active); }
+
+    &:backdrop,
+    &:disabled,
+    &:backdrop:disabled { @include button(undecorated); }
+
+    &:backdrop:checked { @include button(undecorated-hover); }
+  }
+}
+
+// Colored buttons give up their color in an unfocused window.
+button.suggested-action:backdrop,
+button.destructive-action:backdrop {
+  @include button(backdrop);
+}
+
+// Sidebars: a neutral gray column. Rows are inset and rounded; the
+// selected row takes the accent, and turns gray when the window is not
+// focused.
+
+.sidebar,
+.navigation-sidebar {
+  background-color: $sidebar_bg_color;
+}
+
+.navigation-sidebar {
+  padding: 6px 0;
+
+  > row {
+    min-height: $elavo-control-height + 4px;
+    padding: 0 8px;
+    margin: 0 8px 1px;
+    border-radius: $elavo-row-radius;
+
+    &:hover {
+      background-color: $elavo-row-hover;
+    }
+
+    &:selected,
+    &:selected:hover {
+      background-color: $selected_bg_color;
+      color: $selected_fg_color;
+    }
+
+    &:selected:backdrop {
+      background-color: $backdrop_selected_bg_color;
+      color: $fg_color;
+    }
+  }
+}
+
+// Lists: selection is the accent; unfocused, a gray band.
+
+list > row:selected:backdrop,
+listview > row:selected:backdrop,
+columnview > listview > row:selected:backdrop {
+  background-color: $backdrop_selected_bg_color;
+  color: $fg_color;
+}
+
+// Popovers and menus. The highlighted menu item takes the accent.
+
+popover.background {
+  > contents {
+    border: none;
+    border-radius: $elavo-popover-radius;
+    box-shadow: $elavo-popover-shadow;
+  }
+
+  > arrow {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+popover.menu {
+  &.background > contents {
+    padding: 5px;
+  }
+
+  &.background separator {
+    margin: 5px 6px;
+    background-color: $elavo-hairline;
+  }
+
+  modelbutton {
+    min-height: $elavo-control-height - 2px;
+    padding: 0 10px;
+    border-radius: $elavo-menu-item-radius;
+  }
+
+  modelbutton:hover,
+  modelbutton:selected {
+    background-color: $selected_bg_color;
+    color: $selected_fg_color;
+
+    accelerator { color: transparentize($selected_fg_color, 0.25); }
+  }
+}
+
+// Tooltips are light, like the rest of the desktop.
+
+tooltip {
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  &.background {
+    background-color: rgba(250, 250, 250, 0.97);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: $fg_color;
+  }
+}
+
+// Text selection and the rubberband use the accent at low strength.
+
+rubberband {
+  border: 1px solid $selected_bg_color;
+  background-color: transparentize($selected_bg_color, 0.8);
+}

@@ -1,0 +1,17 @@
+// Accent presets. Settings offers these; the theme compiles in only the
+// default. Each entry is the background, the text drawn on it, and the
+// nearest org.gnome.desktop.interface accent-color name, which libadwaita
+// Flatpaks read through the settings portal.
+
+$elavo-accents: (
+  blue:     (bg: #1f6fe5, fg: #ffffff, gnome: blue),
+  purple:   (bg: #8a4fd8, fg: #ffffff, gnome: purple),
+  pink:     (bg: #d6337f, fg: #ffffff, gnome: pink),
+  red:      (bg: #d93b36, fg: #ffffff, gnome: red),
+  orange:   (bg: #c95a06, fg: #ffffff, gnome: orange),
+  yellow:   (bg: #f2c230, fg: #1c1c1c, gnome: yellow),
+  green:    (bg: #258a3b, fg: #ffffff, gnome: green),
+  graphite: (bg: #6e6e73, fg: #ffffff, gnome: slate),
+);
+
+$elavo-accent-default: blue !default;

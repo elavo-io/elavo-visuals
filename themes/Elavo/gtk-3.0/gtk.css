@@ -1,0 +1,71 @@
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+@define-color theme_bg_color #f5f5f5;
+@define-color theme_fg_color #1c1c1c;
+@define-color theme_base_color #ffffff;
+@define-color theme_text_color #1c1c1c;
+@define-color theme_selected_bg_color #1f6fe5;
+@define-color theme_selected_fg_color #ffffff;
+@define-color theme_unfocused_bg_color #f5f5f5;
+@define-color theme_unfocused_fg_color #1c1c1c;
+@define-color theme_unfocused_selected_bg_color #1f6fe5;
+@define-color theme_unfocused_selected_fg_color #ffffff;
+@define-color borders #d1d1d1;
+@define-color accent_color #1f6fe5;
+window {
+  font-family: Roboto, sans-serif; }
+
+headerbar button.titlebutton,
+.titlebar button.titlebutton {
+  min-width: 14px;
+  min-height: 14px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: none;
+  color: transparent;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  -gtk-icon-shadow: none; }
+  headerbar button.titlebutton image,
+  .titlebar button.titlebutton image {
+    opacity: 0;
+    margin: -1px; }
+  headerbar button.titlebutton + button.titlebutton,
+  .titlebar button.titlebutton + button.titlebutton {
+    margin-left: 2px; }
+  headerbar button.titlebutton:first-child,
+  .titlebar button.titlebutton:first-child {
+    margin-left: 10px; }
+
+headerbar button.titlebutton.close,
+.titlebar button.titlebutton.close {
+  background-image: url("assets/close-default-500px.png"); }
+  headerbar button.titlebutton.close:hover, headerbar button.titlebutton.close:active,
+  .titlebar button.titlebutton.close:hover,
+  .titlebar button.titlebutton.close:active {
+    background-image: url("assets/close-hover-500px.png"); }
+
+headerbar button.titlebutton.minimize,
+.titlebar button.titlebutton.minimize {
+  background-image: url("assets/minimize-default-500px.png"); }
+  headerbar button.titlebutton.minimize:hover, headerbar button.titlebutton.minimize:active,
+  .titlebar button.titlebutton.minimize:hover,
+  .titlebar button.titlebutton.minimize:active {
+    background-image: url("assets/minimize-hover-500px.png"); }
+
+headerbar button.titlebutton.maximize,
+.titlebar button.titlebutton.maximize {
+  background-image: url("assets/maximize-default-500px.png"); }
+  headerbar button.titlebutton.maximize:hover, headerbar button.titlebutton.maximize:active,
+  .titlebar button.titlebutton.maximize:hover,
+  .titlebar button.titlebutton.maximize:active {
+    background-image: url("assets/maximize-hover-500px.png"); }
+
+headerbar button.titlebutton:backdrop,
+.titlebar button.titlebutton:backdrop,
+headerbar button.titlebutton:disabled,
+.titlebar button.titlebutton:disabled {
+  background-image: url("assets/close-defocused-500px.png"); }
