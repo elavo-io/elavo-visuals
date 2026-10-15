@@ -16,9 +16,9 @@ $elavo-headerbar-bg: #f5f5f5;
 $elavo-sidebar-bg: #ebebed;
 $elavo-popover-bg: #ffffff;
 $elavo-card-bg: #ffffff;
-$elavo-fg: #1c1c1c;
-$elavo-text: #1c1c1c;
-$elavo-border: #d1d1d1;
+$elavo-fg: #242424;
+$elavo-text: #242424;
+$elavo-border: rgba(0, 0, 0, 0.12);
 $elavo-border-strong: #bdbdbd;
 $elavo-hairline: rgba(0, 0, 0, 0.1);
 $elavo-control-bg: #ffffff;
@@ -39,12 +39,22 @@ $elavo-check-size: 14px;
 $elavo-check-radius: 4px;
 $elavo-switch-width: 36px;
 $elavo-switch-height: 20px;
-$elavo-popover-radius: 10px;
-$elavo-menu-item-radius: 5px;
+$elavo-window-radius: 12px;
+$elavo-popover-radius: 14px;
+$elavo-menu-radius: 12px;
+$elavo-menu-item-radius: 6px;
 $elavo-row-radius: 6px;
+
+$elavo-window-button-size: 16px;
 
 $elavo-control-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.15), 0 0 0 0.5px rgba(0, 0, 0, 0.12);
 $elavo-knob-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 0 0.5px rgba(0, 0, 0, 0.1);
 $elavo-popover-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08);
+// Three soft layers, and two for an unfocused window. The transparent third
+// keeps the shadow's extent, so the window does not jump on focus change.
+$elavo-window-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13),
+                      0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15);
+$elavo-window-shadow-backdrop: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08),
+                               0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12);
 
 $elavo-font-family: Roboto, sans-serif;

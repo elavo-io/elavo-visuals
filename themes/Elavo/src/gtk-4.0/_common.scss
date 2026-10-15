@@ -9,12 +9,11 @@ $assets: 'assets';
 $backdrop_transition: 200ms ease-out;
 $button_transition: all 200ms $ease-out-quad;
 $focus_transition: outline-width 200ms $ease-out-quad, outline-offset 200ms $ease-out-quad;
-// Elavo: radii come from the tokens. The window radius keeps upstream's
-// value because the window corner radius is still undecided.
+// Elavo: radii come from the tokens.
 $button_radius: $elavo-control-radius;
 $menu_radius: $elavo-menu-item-radius;
 $menu_margin: $menu_radius; //margin around menuitems & sidebar items
-$window_radius: 8px;
+$window_radius: $elavo-window-radius;
 $popover_radius: $elavo-popover-radius;
 
 /***************
@@ -4206,19 +4205,13 @@ window {
   $_wm_border_backdrop: if($variant=='light', transparentize(black, 0.82), transparentize(black, 0.25));
 
   &.csd {
-    box-shadow: 0 3px 9px 1px transparentize(black, 0.5),
-                0 0 0 1px $_wm_border; //doing borders with box-shadow
+    // Elavo: the window shadow comes from the tokens.
+    box-shadow: $elavo-window-shadow;
     margin: 0px;
     // Elavo: round all four corners, as libadwaita does.
     border-radius: $window_radius;
     &:backdrop {
-      // the transparent shadow here is to enforce that the shadow extents don't
-      // change when we go to backdrop, to prevent jumping windows.
-      // The biggest shadow should be in the same order then in the active state
-      // or the jumping will happen during the transition.
-      box-shadow: 0 3px 9px 1px transparent,
-                  0 2px 6px 2px transparentize(black, 0.8),
-                  0 0 0 1px $_wm_border_backdrop;
+      box-shadow: $elavo-window-shadow-backdrop;
       transition: $backdrop_transition;
     }
 

@@ -16,7 +16,7 @@ window {
 @import 'elavo-window-buttons';
 
 // GTK's fallback title bar, for a window that sets none, is the same 46px
-// bar as a header bar, so the window buttons sit 16px from the top and left.
+// bar as a header bar, so the window buttons sit where a header bar's do.
 headerbar.default-decoration {
   min-height: 46px;
   padding: 0 6px;

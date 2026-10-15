@@ -64,6 +64,31 @@ $button_radius: $elavo-control-radius;
   }
 }
 
+// The window's corners and shadow, the same as the Elavo theme draws.
+// This sheet outranks the theme in plain GTK apps too, so tiled, maximized,
+// and fullscreen windows are restated after it.
+@media (prefers-color-scheme: light) {
+  window.csd {
+    --window-radius: #{$elavo-window-radius};
+    border-radius: $elavo-window-radius;
+    box-shadow: $elavo-window-shadow;
+
+    &:backdrop { box-shadow: $elavo-window-shadow-backdrop; }
+
+    &.tiled, &.tiled-top, &.tiled-left, &.tiled-right, &.tiled-bottom {
+      --window-radius: 0px;
+      border-radius: 0;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 20px transparent;
+    }
+
+    &.maximized, &.fullscreen {
+      --window-radius: 0px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+}
+
 // Shapes are scoped to toolbarview, the container every libadwaita window
 // and dialog draws its content in. That keeps them off elavo-shell, which
 // GTK would otherwise let this sheet override.

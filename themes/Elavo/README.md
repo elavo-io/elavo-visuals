@@ -75,6 +75,6 @@ To take a newer GTK release, diff its `gtk/theme/Default` against the tag above 
 
 ## Window buttons
 
-14px, 8px apart, in the order close, minimize, maximize. Title bars are 46px, and the first button sits 16px from the top and from the left, on client-side bars and labwc's alike. In title bars an app draws itself, hovering any button lights all three, and the hover art fades in over 150ms. An unfocused window shows `close-defocused-500px.png` on every button until the group is hovered. A disabled button stays on the defocused art. labwc lights only the button under the pointer, and GTK3 does the same.
+16px, 8px apart, in the order close, minimize, maximize. Title bars are 46px, and the first button sits 15px from the top and 19px from the left, on client-side bars and labwc's alike. In title bars an app draws itself, hovering any button lights all three, and the hover art fades in over 150ms. An unfocused window shows `close-defocused-500px.png` on every button until the group is hovered. A disabled button stays on the defocused art. labwc lights only the button under the pointer, and GTK3 does the same.
 
 When the art in `ui/window-decorations` changes, copy it into `openbox-3/`. The `gtk-4.0/assets` and `gtk-3.0/assets` entries are symlinks to those copies.

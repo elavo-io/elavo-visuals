@@ -1,23 +1,34 @@
 @import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
 @define-color theme_bg_color #f5f5f5;
-@define-color theme_fg_color #1c1c1c;
+@define-color theme_fg_color #242424;
 @define-color theme_base_color #ffffff;
-@define-color theme_text_color #1c1c1c;
-@define-color theme_selected_bg_color #1f6fe5;
+@define-color theme_text_color #242424;
+@define-color theme_selected_bg_color #0860f2;
 @define-color theme_selected_fg_color #ffffff;
 @define-color theme_unfocused_bg_color #f5f5f5;
-@define-color theme_unfocused_fg_color #1c1c1c;
-@define-color theme_unfocused_selected_bg_color #1f6fe5;
+@define-color theme_unfocused_fg_color #242424;
+@define-color theme_unfocused_selected_bg_color #0860f2;
 @define-color theme_unfocused_selected_fg_color #ffffff;
-@define-color borders #d1d1d1;
-@define-color accent_color #1f6fe5;
+@define-color borders rgba(0, 0, 0, 0.12);
+@define-color accent_color #0860f2;
 window {
   font-family: Roboto, sans-serif; }
 
+decoration {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
+  decoration:backdrop {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
+
+.background .titlebar,
+.background .titlebar:backdrop {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
 headerbar button.titlebutton,
 .titlebar button.titlebutton {
-  min-width: 14px;
-  min-height: 14px;
+  min-width: 16px;
+  min-height: 16px;
   padding: 0;
   margin: 0;
   border: none;
@@ -27,18 +38,17 @@ headerbar button.titlebutton,
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 14px 14px;
+  background-size: 16px 16px;
   -gtk-icon-shadow: none; }
   headerbar button.titlebutton image,
   .titlebar button.titlebutton image {
-    opacity: 0;
-    margin: -1px; }
+    opacity: 0; }
   headerbar button.titlebutton + button.titlebutton,
   .titlebar button.titlebutton + button.titlebutton {
     margin-left: 2px; }
   headerbar button.titlebutton:first-child,
   .titlebar button.titlebutton:first-child {
-    margin-left: 10px; }
+    margin-left: 13px; }
 
 headerbar button.titlebutton.close,
 .titlebar button.titlebutton.close {

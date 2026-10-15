@@ -1,27 +1,27 @@
 // Window buttons for title bars an app draws itself. labwc draws the
 // server-side ones from openbox-3/.
 //
-// 14px buttons, 8px apart. Hovering any of the three lights all three, and
+// 16px buttons, 8px apart. Hovering any of the three lights all three, and
 // the hover art fades over 150ms. That includes an unfocused window, which
 // otherwise shows the defocused art on every button. A disabled button
 // keeps the defocused art and does not take the hover.
 
 $_buttons: (close: close, minimize: minimize, maximize: maximize);
 
-// Header bars are 46px, so a 14px button sits 16px below the top edge. The
-// side inset matches it: 6px of header-bar padding plus 10px here.
+// Header bars are 46px, so a 16px button sits 15px below the top edge. The
+// side inset is 19px: 6px of header-bar padding plus 13px here.
 windowcontrols {
   border-spacing: 8px;
 }
 
 windowcontrols.start:not(.empty) {
-  margin-left: 10px;
+  margin-left: 13px;
   margin-right: 0;
 }
 
 windowcontrols.end:not(.empty) {
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 13px;
 }
 
 // Window buttons are image buttons, so `.image-button` here outranks the
@@ -34,8 +34,8 @@ windowcontrols > button.image-button:checked,
 windowcontrols > button.image-button:backdrop,
 windowcontrols > button.image-button:disabled,
 headerbar.default-decoration windowcontrols > button.image-button {
-  min-width: 14px;
-  min-height: 14px;
+  min-width: $elavo-window-button-size;
+  min-height: $elavo-window-button-size;
   padding: 0;
   margin: 0;
   border: none;
@@ -46,7 +46,7 @@ headerbar.default-decoration windowcontrols > button.image-button {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 14px 14px;
+  background-size: $elavo-window-button-size $elavo-window-button-size;
   transition: background-image 150ms ease;
 }
 
@@ -60,7 +60,7 @@ headerbar.default-decoration windowcontrols > button > image {
   min-height: 0;
   padding: 0;
   margin: 0;
-  -gtk-icon-size: 14px;
+  -gtk-icon-size: $elavo-window-button-size;
   background: none;
   box-shadow: none;
 }

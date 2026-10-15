@@ -4,13 +4,13 @@
  * order from GTK, so the GTK theme cannot reach them. install.sh copies this
  * file and the button art into a profile's chrome/ folder.
  *
- * 14px buttons, 8px apart, 16px from the window edge. Hovering any button
+ * 16px buttons, 8px apart, 19px from the window edge. Hovering any button
  * lights all three, also on an unfocused window, which otherwise shows the
  * defocused art. Firefox cannot fade between background images, so the
  * hover art switches without the 150ms fade. */
 
 .titlebar-buttonbox-container {
-  margin-inline: 12px !important;
+  margin-inline: 15px !important;
 }
 
 .titlebar-button {
@@ -18,10 +18,10 @@
 }
 
 .titlebar-button > .toolbarbutton-icon {
-  width: 14px !important;
-  height: 14px !important;
+  width: 16px !important;
+  height: 16px !important;
   background-color: transparent !important;
-  background-size: 14px 14px !important;
+  background-size: 16px 16px !important;
   -moz-context-properties: none !important;
   outline-offset: 2px;
 }

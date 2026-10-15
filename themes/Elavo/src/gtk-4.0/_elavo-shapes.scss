@@ -275,9 +275,12 @@ popover.background {
   }
 }
 
+// The menu's padding is its radius less the item radius, so the corners
+// stay concentric.
 popover.menu {
   &.background > contents {
-    padding: 5px;
+    padding: $elavo-menu-radius - $elavo-menu-item-radius;
+    border-radius: $elavo-menu-radius;
   }
 
   &.background separator {
