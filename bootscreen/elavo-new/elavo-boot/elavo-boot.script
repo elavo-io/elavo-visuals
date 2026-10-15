@@ -99,52 +99,55 @@ if (Plymouth.GetMode() != "suspend" && Plymouth.GetMode() != "resume") {
 
 status = "normal";
 
+# The password field is a white pill with a black lock inside it, in the
+# progress bar's place. Sizes follow the screen width, as the sun's do.
 fun dialog_setup()
   {
-    local.box;
-    local.lock;
     local.entry;
+    local.lock;
     local.prompt_sprite;
 
-    box.image = ImageNew("box.png");
-    lock.image = ImageNew("lock.png");
-    entry.image = ImageNew("entry.png");
+    entry.original_image = ImageNew("entry.png");
+    entry.width = Math.Int(Window.GetWidth() * 0.11);
+    entry.height = Math.Int(entry.width * entry.original_image.GetHeight() / entry.original_image.GetWidth());
+    entry.image = entry.original_image.Scale(entry.width, entry.height);
 
-    box.sprite = SpriteNew();
-    box.sprite.SetImage(box.image);
-    box.x = Window.GetX() + Window.GetWidth()  / 2 - box.image.GetWidth()/2;
-    box.y = Window.GetY() + Window.GetHeight() / 2 - box.image.GetHeight()/2;
-    box.z = 10000;
-    box.sprite.SetPosition(box.x, box.y, box.z);
+    lock.original_image = ImageNew("lock.png");
+    lock.height = Math.Int(entry.height * 0.5);
+    lock.width = Math.Int(lock.height * lock.original_image.GetWidth() / lock.original_image.GetHeight());
+    lock.image = lock.original_image.Scale(lock.width, lock.height);
 
-    lock.sprite = SpriteNew();
-    lock.sprite.SetImage(lock.image);
-    lock.x = box.x + box.image.GetWidth()/2 - (lock.image.GetWidth() + entry.image.GetWidth()) / 2;
-    lock.y = box.y + box.image.GetHeight()/2 - lock.image.GetHeight()/2;
-    lock.z = box.z + 1;
-    lock.sprite.SetPosition(lock.x, lock.y, lock.z);
-
+    # Centered where the progress bar is; the bar hides while it shows.
+    entry.x = Window.GetX() + Window.GetWidth() / 2 - entry.width / 2;
+    entry.y = Math.Int(Window.GetY() + Window.GetHeight() * 0.65 - entry.height / 2);
+    entry.z = 10000;
     entry.sprite = SpriteNew();
     entry.sprite.SetImage(entry.image);
-    entry.x = lock.x + lock.image.GetWidth();
-    entry.y = box.y + box.image.GetHeight()/2 - entry.image.GetHeight()/2;
-    entry.z = box.z + 1;
     entry.sprite.SetPosition(entry.x, entry.y, entry.z);
 
-    prompt_sprite = SpriteNew();
-    prompt_sprite.SetPosition(box.x, box.y - 20, box.z);
+    lock.x = entry.x + Math.Int(entry.height * 0.4);
+    lock.y = entry.y + Math.Int((entry.height - lock.height) / 2);
+    lock.z = entry.z + 1;
+    lock.sprite = SpriteNew();
+    lock.sprite.SetImage(lock.image);
+    lock.sprite.SetPosition(lock.x, lock.y, lock.z);
 
-    global.dialog.box = box;
-    global.dialog.lock = lock;
+    prompt_sprite = SpriteNew();
+    prompt_sprite.SetPosition(entry.x, entry.y, entry.z);
+
+    bullet_size = Math.Int(entry.height * 0.26);
     global.dialog.entry = entry;
-    global.dialog.bullet_image = ImageNew("bullet.png");
+    global.dialog.lock = lock;
+    global.dialog.bullet_image = ImageNew("bullet.png").Scale(bullet_size, bullet_size);
+    global.dialog.bullet_step = Math.Int(bullet_size * 1.7);
+    global.dialog.bullet_x = lock.x + lock.width + Math.Int(entry.height * 0.3);
+    global.dialog.bullet_max = Math.Int((entry.x + entry.width - entry.height * 0.5 - global.dialog.bullet_x) / global.dialog.bullet_step);
     global.dialog.prompt_sprite = prompt_sprite;
     dialog_opacity (1);
   }
 
 fun dialog_opacity(opacity)
   {
-    dialog.box.sprite.SetOpacity(opacity);
     dialog.lock.sprite.SetOpacity(opacity);
     dialog.entry.sprite.SetOpacity(opacity);
     dialog.prompt_sprite.SetOpacity(opacity);
@@ -154,11 +157,20 @@ fun dialog_opacity(opacity)
       }
   }
 
+fun progress_opacity (opacity)
+  {
+    if (progress_box.sprite)
+      progress_box.sprite.SetOpacity (opacity);
+    if (progress_bar.sprite)
+      progress_bar.sprite.SetOpacity (opacity);
+  }
+
 fun display_normal_callback ()
   {
     global.status = "normal";
     if (global.dialog)
       dialog_opacity (0);
+    progress_opacity (1);
   }
 
 fun display_password_callback (prompt, bullets)
@@ -169,33 +181,38 @@ fun display_password_callback (prompt, bullets)
     else
 	dialog_opacity(1);
     anim.sprite.SetOpacity(0);
+    progress_opacity (0);
 
-    dialog.prompt_sprite.SetImage(Image.Text(prompt, 1.0, 1.0, 1.0));
-    for (index = 0; dialog.bullet[index] || index < bullets; index++)
+    # The caller's prompt names the device ("Please enter passphrase for disk
+    # ... (luks-...)"), so the theme shows its own line instead.
+    prompt_image = Image.Text("Enter your password to unlock this disk", 1.0, 1.0, 1.0);
+    dialog.prompt_sprite.SetImage(prompt_image);
+    dialog.prompt_sprite.SetX(dialog.entry.x + (dialog.entry.width - prompt_image.GetWidth()) / 2);
+    dialog.prompt_sprite.SetY(dialog.entry.y - prompt_image.GetHeight() - Math.Int(dialog.entry.height * 0.3));
+
+    # Past the pill's width, more typing shows no more bullets.
+    shown = Math.Min(bullets, dialog.bullet_max);
+    for (index = 0; dialog.bullet[index] || index < shown; index++)
       {
-
         if (!dialog.bullet[index])
           {
             dialog.bullet[index].sprite = SpriteNew();
             dialog.bullet[index].sprite.SetImage(dialog.bullet_image);
-            dialog.bullet[index].x = dialog.entry.x + index * dialog.bullet_image.GetWidth();
-            dialog.bullet[index].y = dialog.entry.y + dialog.entry.image.GetHeight() / 2 - dialog.bullet_image.GetHeight() / 2;
+            dialog.bullet[index].x = dialog.bullet_x + index * dialog.bullet_step;
+            dialog.bullet[index].y = dialog.entry.y + Math.Int((dialog.entry.height - dialog.bullet_image.GetHeight()) / 2);
             dialog.bullet[index].z = dialog.entry.z + 1;
             dialog.bullet[index].sprite.SetPosition(dialog.bullet[index].x, dialog.bullet[index].y, dialog.bullet[index].z);
           }
-        if (index < bullets)
+        if (index < shown)
           dialog.bullet[index].sprite.SetOpacity(1);
         else
           dialog.bullet[index].sprite.SetOpacity(0);
       }
   }
 
+# Status messages are not shown. The boot screen stays the logo and the bar.
 fun display_message_callback (prompt)
   {
-
-prompt = Image.Text(prompt,1.0, 1.0, 1.0);
-sprite_prompt.SetImage(prompt);
-sprite_prompt.SetPosition(Window.GetX() + (Window.GetWidth() - prompt.GetWidth()) / 2, Window.GetY() + Window.GetHeight() * 0.93, 2);
   }
 
 /* instantiate dialog at startup, to ensure all icons are loaded in memory before initrd is unmounted, in case /usr isn't mounted yet */
