@@ -54,7 +54,9 @@
       --window-radius: 0px;
       border-radius: 0;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 20px transparent; }
-    window.csd.maximized, window.csd.fullscreen {
+    window.csd.maximized {
+      box-shadow: none; }
+    window.csd.fullscreen {
       --window-radius: 0px;
       border-radius: 0;
       box-shadow: none; } }

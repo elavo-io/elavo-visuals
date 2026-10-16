@@ -81,7 +81,10 @@ $button_radius: $elavo-control-radius;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 20px transparent;
     }
 
-    &.maximized, &.fullscreen {
+    // A maximized window keeps its corners and loses only the shadow.
+    &.maximized { box-shadow: none; }
+
+    &.fullscreen {
       --window-radius: 0px;
       border-radius: 0;
       box-shadow: none;

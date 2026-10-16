@@ -25,6 +25,18 @@ decoration {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px; }
 
+.csd.maximized decoration,
+.csd.maximized decoration:backdrop {
+  border-radius: 12px 12px 0 0;
+  box-shadow: none; }
+
+window.csd.maximized headerbar,
+window.csd.maximized headerbar:backdrop,
+window.csd.maximized .titlebar,
+window.csd.maximized .titlebar:backdrop {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
 headerbar button.titlebutton,
 .titlebar button.titlebutton {
   min-width: 16px;
