@@ -16,9 +16,12 @@ $contrast: 'normal';
 
 $button_radius: $elavo-control-radius;
 
+// The palette only. This sheet is imported by the user stylesheet, which
+// outranks the theme, so an accent on :root here would pin every GTK app
+// and a theme change could not recolor it. The default accent is set on
+// toolbarview, below, where libadwaita draws.
 :root {
-  --accent-bg-color: #{$elavo-accent-bg-default};
-  --accent-fg-color: #{$elavo-accent-fg-default};
+  @include elavo-accent-palette;
 }
 
 @media (prefers-color-scheme: light) {
@@ -97,6 +100,9 @@ $button_radius: $elavo-control-radius;
 // and Lens, which GTK would otherwise let this sheet override.
 @media (prefers-color-scheme: light) {
   toolbarview {
+    --accent-bg-color: var(--elavo-accent-#{$elavo-accent-default});
+    --accent-fg-color: var(--elavo-accent-#{$elavo-accent-default}-fg);
+    --accent-color: var(--accent-bg-color);
     font-family: $elavo-font-family;
 
     @import 'elavo-faces';

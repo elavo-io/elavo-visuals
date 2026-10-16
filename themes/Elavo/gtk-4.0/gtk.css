@@ -4272,8 +4272,24 @@ read if you used those and something break with a version upgrade you're on your
 /* Very contrasty background for text views (@theme_text_color foreground) */
 @define-color text_view_bg #ffffff;
 :root {
-  --accent-bg-color: #0860f2;
-  --accent-fg-color: #ffffff;
+  --elavo-accent-blue: #0860f2;
+  --elavo-accent-blue-fg: #ffffff;
+  --elavo-accent-purple: #8a4fd8;
+  --elavo-accent-purple-fg: #ffffff;
+  --elavo-accent-pink: #d6337f;
+  --elavo-accent-pink-fg: #ffffff;
+  --elavo-accent-red: #d93b36;
+  --elavo-accent-red-fg: #ffffff;
+  --elavo-accent-orange: #c95a06;
+  --elavo-accent-orange-fg: #ffffff;
+  --elavo-accent-yellow: #f2c230;
+  --elavo-accent-yellow-fg: #1c1c1c;
+  --elavo-accent-green: #258a3b;
+  --elavo-accent-green-fg: #ffffff;
+  --elavo-accent-graphite: #6e6e73;
+  --elavo-accent-graphite-fg: #ffffff;
+  --accent-bg-color: var(--elavo-accent-blue);
+  --accent-fg-color: var(--elavo-accent-blue-fg);
   --accent-color: var(--accent-bg-color); }
 
 window {

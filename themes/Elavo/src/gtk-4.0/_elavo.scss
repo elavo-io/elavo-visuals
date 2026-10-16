@@ -3,8 +3,9 @@
 // menu item, checked controls, the default button, focus rings.
 
 :root {
-  --accent-bg-color: #{$elavo-accent-bg-default};
-  --accent-fg-color: #{$elavo-accent-fg-default};
+  @include elavo-accent-palette;
+  --accent-bg-color: var(--elavo-accent-#{$elavo-accent-default});
+  --accent-fg-color: var(--elavo-accent-#{$elavo-accent-default}-fg);
   --accent-color: var(--accent-bg-color);
 }
 

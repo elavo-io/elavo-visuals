@@ -37,7 +37,7 @@ for sheet in gtk libadwaita; do
   printf '$elavo-accent-default: graphite;\n@import "%s";\n' "$sheet" > "$tmp/check-$sheet.scss"
   compile "$tmp/check-$sheet.scss" "$tmp/$sheet.css"
   leaked=$(diff "$out/$sheet.css" "$tmp/$sheet.css" | grep '^[<>]' \
-    | grep -v -E -e '--accent-(bg|fg)-color: #' \
+    | grep -v -E -e '--accent-(bg|fg)-color: (#|var\(--elavo-accent-)' \
                  -e '@define-color (theme_selected_(bg|fg)_color|theme_unfocused_selected_(bg|fg)_color|accent_color) ' || true)
   if [ -n "$leaked" ]; then
     echo "build.sh: accent color computed at build time in $sheet.css:" >&2

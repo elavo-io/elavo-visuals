@@ -32,15 +32,34 @@ For labwc, select `Elavo` in `rc.xml` (`<theme><name>Elavo</name></theme>`).
 
 The accent is one runtime value, `--accent-bg-color`, with `--accent-fg-color` for text drawn on it. Every place the accent appears reads it: the selected sidebar row, list selection, the highlighted menu item, the default button, checked checks, radios, and switches, sliders, progress, links, focus rings, and text selection. Shades such as pressed and focus are worked out by GTK when it draws (`color-mix()`, `hsl(from …)`), not by Sass, so changing the value changes all of them.
 
-`~/.config/gtk-4.0/elavo-accent.css` overrides it:
+The sheet publishes every preset as `--elavo-accent-<name>` and `--elavo-accent-<name>-fg`, and points the active accent at blue. The presets and their GNOME accent names are in `src/gtk-4.0/_elavo-accents.scss`. A settings pane should, for any color other than blue, write `~/.local/share/themes/Elavo-user`. That theme imports this one and publishes the chosen accent under a name the user stylesheet can point at:
 
 ```css
-:root { --accent-bg-color: #d93b36; --accent-fg-color: #ffffff; }
+@import url("../../Elavo/gtk-4.0/gtk.css");
+
+:root {
+  --elavo-user-accent: var(--elavo-accent-red);
+  --elavo-user-accent-fg: var(--elavo-accent-red-fg);
+}
 ```
 
-An empty file means the theme default. The presets and their GNOME accent names are in `src/gtk-4.0/_elavo-accents.scss`. A settings pane should write this file and also set `org.gnome.desktop.interface accent-color` to the matching GNOME name, which is how libadwaita Flatpaks get the accent. GTK reads the user stylesheet when an app starts.
+`Elavo-mirror` is a symlink to that directory. Blue sets `gtk-theme` to `Elavo`. Any other color writes the file, then sets `gtk-theme` to whichever of `Elavo-user` and `Elavo-mirror` is not already selected. GTK follows the symlink and reloads the sheet. Both names are the light theme.
 
-The legacy named colors (`@theme_selected_bg_color`, `@accent_color`) cannot hold a `var()`. They are the compiled default and do not follow the user's accent. Use `var(--accent-bg-color)` instead. GTK3 has no `var()`; its accent is the compiled default unless `~/.config/gtk-3.0/gtk.css` overrides `@theme_selected_bg_color`.
+`~/.config/gtk-4.0/elavo-accent.css` is the file every app imports. Apps that load the theme pick up `--elavo-user-accent` from the theme reload above. libadwaita apps do not: they set their own theme to `Adwaita-empty`. The accent file names the preset for them, and a high-contrast change makes GTK re-read the import. Light and dark stay as they are.
+
+```css
+:root,
+toolbarview {
+  --elavo-user-accent: var(--elavo-accent-red);
+  --elavo-user-accent-fg: var(--elavo-accent-red-fg);
+  --accent-bg-color: var(--elavo-user-accent, var(--elavo-accent-blue));
+  --accent-fg-color: var(--elavo-user-accent-fg, var(--elavo-accent-blue-fg));
+}
+```
+
+Blue omits the two `--elavo-user-accent` lines, so the fallback is the theme default. `toolbarview` is where libadwaita draws. `:root` covers the dock and other GTK apps. The pane also sets `accent-color` to the matching GNOME name, which is how libadwaita Flatpaks get an accent. A dark theme gets its own directory and symlink.
+
+The legacy named colors (`@theme_selected_bg_color`, `@accent_color`) cannot hold a `var()`. They are the compiled default. GTK3 has no `var()`. The user theme's `gtk-3.0/gtk.css` imports Elavo's GTK3 sheet and redefines `@theme_selected_bg_color`, `@theme_selected_fg_color`, the unfocused pair, and `@accent_color`. Use `var(--accent-bg-color)` in GTK4.
 
 `build.sh` builds a second time with a different default accent and fails if anything other than the default's own declarations changed. That catches an accent shade computed by Sass at build time.
 
@@ -64,7 +83,7 @@ Both are libsass, the compiler GTK builds its own theme with.
 | `_colors-public.scss` | GTK, with the accent-based named colors set to the compiled default. |
 | `_colors.scss` | Elavo. Replaces GTK's palette with the tokens, using GTK's variable names. |
 | `_elavo-tokens.scss` | Elavo colors, sizes, radii, shadows, and font. |
-| `_elavo-accents.scss` | Accent presets. |
+| `_elavo-accents.scss` | Accent presets, and the palette published as custom properties. |
 | `_elavo-functions.scss` | Replaces Sass's `darken`, `lighten`, `mix`, `transparentize`, `opacify`, `desaturate`, and `invert` so they also accept the accent variable. |
 | `_elavo-drawing.scss` | Redefines GTK's `button`, `entry`, `check`, `focus-ring`, and `headerbar_fill` mixins. |
 | `_elavo-shapes.scss` | Elavo metrics and accent placement, used by both sheets. |

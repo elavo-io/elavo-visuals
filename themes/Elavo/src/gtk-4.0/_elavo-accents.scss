@@ -1,7 +1,7 @@
-// Accent presets. Settings offers these; the theme compiles in only the
-// default. Each entry is the background, the text drawn on it, and the
-// nearest org.gnome.desktop.interface accent-color name, which libadwaita
-// Flatpaks read through the settings portal.
+// Accent presets. Settings offers these. Each entry is the background, the
+// text drawn on it, and the nearest org.gnome.desktop.interface accent-color
+// name, which libadwaita Flatpaks read through the settings portal. The
+// theme publishes every preset; the active accent points at the default.
 
 $elavo-accents: (
   blue:     (bg: #0860f2, fg: #ffffff, gnome: blue),
@@ -15,3 +15,12 @@ $elavo-accents: (
 );
 
 $elavo-accent-default: blue !default;
+
+// On :root, so a user theme can point --accent-bg-color at one preset
+// without copying the hex values.
+@mixin elavo-accent-palette {
+  @each $name, $color in $elavo-accents {
+    --elavo-accent-#{$name}: #{map-get($color, bg)};
+    --elavo-accent-#{$name}-fg: #{map-get($color, fg)};
+  }
+}
