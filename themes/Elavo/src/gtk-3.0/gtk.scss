@@ -97,6 +97,23 @@ headerbar button.titlebutton,
 
   // With the header bar's 6px padding, a 19px inset, as in GTK4 bars.
   &:first-child { margin-left: 13px; }
+
+  // And 19px to the bar's next control, with its 6px spacing.
+  &:last-child { margin-right: 13px; }
+}
+
+// Chromium-based browsers lay out their own title bar. They read only the
+// header bar's padding and each button's margin, from a
+// headerbar.header-bar > windowcontrols > button.titlebutton path with no
+// siblings, so :first-child and :last-child never match there. A GTK3 app
+// has no windowcontrols node, so these rules reach only those browsers.
+// With the 6px padding and Chromium's fixed 6px between buttons, this is
+// the same 19px inset and 8px spacing, and 19px before the first tab. It
+// assumes Elavo's close, minimize, maximize order on the left.
+headerbar.header-bar windowcontrols button.titlebutton {
+  &.close { margin-left: 13px; }
+  &.minimize { margin-left: 2px; }
+  &.maximize { margin-left: 2px; margin-right: 19px; }
 }
 
 // 8px in the 30px fallback bar, as in GTK4.

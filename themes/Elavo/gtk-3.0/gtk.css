@@ -66,6 +66,19 @@ headerbar button.titlebutton,
   headerbar button.titlebutton:first-child,
   .titlebar button.titlebutton:first-child {
     margin-left: 13px; }
+  headerbar button.titlebutton:last-child,
+  .titlebar button.titlebutton:last-child {
+    margin-right: 13px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.close {
+  margin-left: 13px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.minimize {
+  margin-left: 2px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.maximize {
+  margin-left: 2px;
+  margin-right: 19px; }
 
 headerbar.default-decoration button.titlebutton:first-child,
 .titlebar.default-decoration button.titlebutton:first-child {

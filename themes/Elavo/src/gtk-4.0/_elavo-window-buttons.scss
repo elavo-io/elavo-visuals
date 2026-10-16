@@ -10,18 +10,19 @@ $_buttons: (close: close, minimize: minimize, maximize: maximize);
 
 // Header bars are 46px, so a 16px button sits 15px below the top edge, or
 // 7px in a 30px title-only bar. The side inset is 19px: 6px of header-bar
-// padding plus 13px here.
+// padding plus 13px here. The same 19px separates the buttons from the
+// bar's next control: the bar's 6px spacing plus 13px.
 windowcontrols {
   border-spacing: 8px;
 }
 
 windowcontrols.start:not(.empty) {
   margin-left: 13px;
-  margin-right: 0;
+  margin-right: 13px;
 }
 
 windowcontrols.end:not(.empty) {
-  margin-left: 0;
+  margin-left: 13px;
   margin-right: 13px;
 }
 

@@ -4533,10 +4533,10 @@ windowcontrols {
 
 windowcontrols.start:not(.empty) {
   margin-left: 13px;
-  margin-right: 0; }
+  margin-right: 13px; }
 
 windowcontrols.end:not(.empty) {
-  margin-left: 0;
+  margin-left: 13px;
   margin-right: 13px; }
 
 headerbar.default-decoration windowcontrols.start:not(.empty),

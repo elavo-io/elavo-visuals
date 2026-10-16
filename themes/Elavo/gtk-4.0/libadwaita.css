@@ -495,9 +495,9 @@
       border-spacing: 8px; }
     toolbarview windowcontrols.start:not(.empty) {
       margin-left: 13px;
-      margin-right: 0; }
+      margin-right: 13px; }
     toolbarview windowcontrols.end:not(.empty) {
-      margin-left: 0;
+      margin-left: 13px;
       margin-right: 13px; }
     toolbarview headerbar.default-decoration windowcontrols.start:not(.empty),
     toolbarview headerbar.elavo-title-only windowcontrols.start:not(.empty) {
@@ -561,10 +561,10 @@ windowcontrols {
 
 windowcontrols.start:not(.empty) {
   margin-left: 13px;
-  margin-right: 0; }
+  margin-right: 13px; }
 
 windowcontrols.end:not(.empty) {
-  margin-left: 0;
+  margin-left: 13px;
   margin-right: 13px; }
 
 headerbar.default-decoration windowcontrols.start:not(.empty),
