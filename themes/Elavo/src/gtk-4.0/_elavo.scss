@@ -16,9 +16,13 @@ window {
 @import 'elavo-shapes';
 @import 'elavo-window-buttons';
 
-// GTK's fallback title bar, for a window that sets none, is the same 46px
-// bar as a header bar, so the window buttons sit where a header bar's do.
-headerbar.default-decoration {
-  min-height: 46px;
+// A title bar that holds only the window buttons and the title is 30px,
+// with the buttons 7px from the top. That is GTK's fallback bar, for a
+// window that sets none, and a header bar marked .elavo-title-only. GTK
+// cannot tell from CSS whether a header bar has other children, so an app
+// marks its own.
+headerbar.default-decoration,
+headerbar.elavo-title-only {
+  min-height: 30px;
   padding: 0 6px;
 }

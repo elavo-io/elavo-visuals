@@ -60,6 +60,14 @@ window.csd.maximized .titlebar:backdrop {
   border-top-right-radius: $elavo-window-radius;
 }
 
+// GTK's fallback title bar holds only the window buttons and the title,
+// so it is 30px, as in GTK4.
+headerbar.default-decoration,
+.titlebar.default-decoration {
+  min-height: 30px;
+  padding: 0 6px;
+}
+
 // GTK3 does not give the button box :hover when a child is hovered, so
 // each button lights on its own here.
 
@@ -89,6 +97,12 @@ headerbar button.titlebutton,
 
   // With the header bar's 6px padding, a 19px inset, as in GTK4 bars.
   &:first-child { margin-left: 13px; }
+}
+
+// 8px in the 30px fallback bar, as in GTK4.
+headerbar.default-decoration button.titlebutton:first-child,
+.titlebar.default-decoration button.titlebutton:first-child {
+  margin-left: 2px;
 }
 
 @each $class, $art in $_buttons {

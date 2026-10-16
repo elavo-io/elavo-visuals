@@ -37,6 +37,11 @@ window.csd.maximized .titlebar:backdrop {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px; }
 
+headerbar.default-decoration,
+.titlebar.default-decoration {
+  min-height: 30px;
+  padding: 0 6px; }
+
 headerbar button.titlebutton,
 .titlebar button.titlebutton {
   min-width: 16px;
@@ -61,6 +66,10 @@ headerbar button.titlebutton,
   headerbar button.titlebutton:first-child,
   .titlebar button.titlebutton:first-child {
     margin-left: 13px; }
+
+headerbar.default-decoration button.titlebutton:first-child,
+.titlebar.default-decoration button.titlebutton:first-child {
+  margin-left: 2px; }
 
 headerbar button.titlebutton.close,
 .titlebar button.titlebutton.close {

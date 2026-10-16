@@ -499,6 +499,12 @@
     toolbarview windowcontrols.end:not(.empty) {
       margin-left: 0;
       margin-right: 13px; }
+    toolbarview headerbar.default-decoration windowcontrols.start:not(.empty),
+    toolbarview headerbar.elavo-title-only windowcontrols.start:not(.empty) {
+      margin-left: 2px; }
+    toolbarview headerbar.default-decoration windowcontrols.end:not(.empty),
+    toolbarview headerbar.elavo-title-only windowcontrols.end:not(.empty) {
+      margin-right: 2px; }
     toolbarview windowcontrols > button,
     toolbarview windowcontrols > button.image-button,
     toolbarview windowcontrols > button.image-button:hover,
@@ -560,6 +566,14 @@ windowcontrols.start:not(.empty) {
 windowcontrols.end:not(.empty) {
   margin-left: 0;
   margin-right: 13px; }
+
+headerbar.default-decoration windowcontrols.start:not(.empty),
+headerbar.elavo-title-only windowcontrols.start:not(.empty) {
+  margin-left: 2px; }
+
+headerbar.default-decoration windowcontrols.end:not(.empty),
+headerbar.elavo-title-only windowcontrols.end:not(.empty) {
+  margin-right: 2px; }
 
 windowcontrols > button,
 windowcontrols > button.image-button,

@@ -7,16 +7,17 @@
 # close-defocused-500px.png on every button; hovering one shows its hover
 # art. labwc lights only the button under the pointer.
 #
-# The bar matches client-side title bars: 46px tall, with 16px buttons 15px
-# from the top and 19px inside the 1px border.
+# A server-side bar holds only the buttons and the title, so it matches
+# client-side title-only bars: 30px tall, with 16px buttons 7px from the
+# top and 8px inside the 1px border.
 # labwc's bar is the title font's 20px plus the vertical padding on each
 # side. The title text is still open; the corner radius is in labwc's rc.xml.
 
 window.button.width: 16
 window.button.height: 16
 window.button.spacing: 8
-window.titlebar.padding.width: 19
-window.titlebar.padding.height: 13
+window.titlebar.padding.width: 8
+window.titlebar.padding.height: 5
 
 # labwc draws one shadow layer, and only with <dropShadows> on in rc.xml.
 window.active.shadow.size: 24

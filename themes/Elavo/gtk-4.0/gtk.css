@@ -4539,6 +4539,14 @@ windowcontrols.end:not(.empty) {
   margin-left: 0;
   margin-right: 13px; }
 
+headerbar.default-decoration windowcontrols.start:not(.empty),
+headerbar.elavo-title-only windowcontrols.start:not(.empty) {
+  margin-left: 2px; }
+
+headerbar.default-decoration windowcontrols.end:not(.empty),
+headerbar.elavo-title-only windowcontrols.end:not(.empty) {
+  margin-right: 2px; }
+
 windowcontrols > button,
 windowcontrols > button.image-button,
 windowcontrols > button.image-button:hover,
@@ -4598,6 +4606,7 @@ windowcontrols:hover > button.minimize:not(:disabled) {
 windowcontrols:hover > button.maximize:not(:disabled) {
   background-image: url("assets/maximize-hover-500px.png"); }
 
-headerbar.default-decoration {
-  min-height: 46px;
+headerbar.default-decoration,
+headerbar.elavo-title-only {
+  min-height: 30px;
   padding: 0 6px; }

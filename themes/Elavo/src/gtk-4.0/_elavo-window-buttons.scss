@@ -8,8 +8,9 @@
 
 $_buttons: (close: close, minimize: minimize, maximize: maximize);
 
-// Header bars are 46px, so a 16px button sits 15px below the top edge. The
-// side inset is 19px: 6px of header-bar padding plus 13px here.
+// Header bars are 46px, so a 16px button sits 15px below the top edge, or
+// 7px in a 30px title-only bar. The side inset is 19px: 6px of header-bar
+// padding plus 13px here.
 windowcontrols {
   border-spacing: 8px;
 }
@@ -22,6 +23,14 @@ windowcontrols.start:not(.empty) {
 windowcontrols.end:not(.empty) {
   margin-left: 0;
   margin-right: 13px;
+}
+
+// A 30px title-only bar puts the buttons 8px from the side, the same as
+// the space between them; 19px looks lopsided next to 7px above.
+headerbar.default-decoration,
+headerbar.elavo-title-only {
+  windowcontrols.start:not(.empty) { margin-left: 2px; }
+  windowcontrols.end:not(.empty) { margin-right: 2px; }
 }
 
 // Window buttons are image buttons, so `.image-button` here outranks the
