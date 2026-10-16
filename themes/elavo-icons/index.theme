@@ -1,0 +1,36 @@
+[Icon Theme]
+Name=Elavo
+Comment=Elavo icons
+Inherits=Adwaita,hicolor
+Example=org.gnome.Nautilus
+Directories=1024x1024/apps,1024x1024/places,symbolic/apps,symbolic/actions
+
+# Each drawing exists at 1024 pixels only. Scalable lets GTK draw it at any
+# size from that one file.
+[1024x1024/apps]
+Size=1024
+MinSize=8
+MaxSize=1024
+Type=Scalable
+Context=Applications
+
+[1024x1024/places]
+Size=1024
+MinSize=8
+MaxSize=1024
+Type=Scalable
+Context=Places
+
+[symbolic/apps]
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Applications
+
+[symbolic/actions]
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Actions

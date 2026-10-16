@@ -74,7 +74,7 @@ Both are libsass, the compiler GTK builds its own theme with.
 
 ## Source layout
 
-`src/gtk-4.0/` starts from GTK's built-in theme, `gtk/theme/Default` at GTK tag `4.22.5` (commit `bd25f1e2dc2c2fbf3b8864e61afe642910ba359c`). That code, and this theme as derived from it, are under the GNU LGPL, version 2 or later; see `COPYING`. The window-button PNGs are Elavo artwork from `ui/window-decorations`.
+`src/gtk-4.0/` starts from GTK's built-in theme, `gtk/theme/Default` at GTK tag `4.22.5` (commit `bd25f1e2dc2c2fbf3b8864e61afe642910ba359c`). That code, and this theme as derived from it, are under the GNU LGPL, version 2 or later; see `COPYING`. The window-button PNGs are Elavo artwork from `assets/ui/window-decorations`.
 
 | File | Origin |
 | --- | --- |
@@ -96,4 +96,4 @@ To take a newer GTK release, diff its `gtk/theme/Default` against the tag above 
 
 16px, 8px apart, in the order close, minimize, maximize. Title bars are 46px, and the first button sits 15px from the top and 19px from the left, on client-side bars and labwc's alike. In title bars an app draws itself, hovering any button lights all three, and the hover art fades in over 150ms. An unfocused window shows `close-defocused-500px.png` on every button until the group is hovered. A disabled button stays on the defocused art. labwc lights only the button under the pointer, and GTK3 does the same.
 
-When the art in `ui/window-decorations` changes, copy it into `openbox-3/`. The `gtk-4.0/assets` and `gtk-3.0/assets` entries are symlinks to those copies.
+When the art in `assets/ui/window-decorations` changes, copy it into `openbox-3/`. The `gtk-4.0/assets` and `gtk-3.0/assets` entries are symlinks to those copies.

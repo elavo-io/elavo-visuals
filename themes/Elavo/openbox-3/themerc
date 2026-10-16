@@ -1,6 +1,6 @@
 # Elavo server-side decorations for labwc.
 #
-# Button art is the PNGs from ui/window-decorations, copied here so the
+# Button art is the PNGs from assets/ui/window-decorations, copied here so the
 # theme directory installs as one piece. labwc loads the names it knows
 # (close-active.png, iconify_hover-inactive.png, max_toggled-active.png,
 # and so on), which are symlinks to those PNGs. An unfocused window shows
