@@ -93,8 +93,8 @@ $button_radius: $elavo-control-radius;
 }
 
 // Shapes are scoped to toolbarview, the container every libadwaita window
-// and dialog draws its content in. That keeps them off elavo-shell, which
-// GTK would otherwise let this sheet override.
+// and dialog draws its content in. That keeps them off Folio's panel, dock,
+// and Lens, which GTK would otherwise let this sheet override.
 @media (prefers-color-scheme: light) {
   toolbarview {
     font-family: $elavo-font-family;

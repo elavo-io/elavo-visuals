@@ -24,7 +24,7 @@ libadwaita apps do not load `gtk-theme-name`. To style them, `~/.config/gtk-4.0/
 @import url("elavo-accent.css");
 ```
 
-That user stylesheet sits above every GTK4 app's own CSS, including `elavo-shell`, so `libadwaita.css` scopes its widget rules to `toolbarview`, which only libadwaita windows have. Under a dark color-scheme preference, libadwaita apps keep libadwaita's dark palette until Elavo has a dark variant.
+That user stylesheet sits above every GTK4 app's own CSS, including Folio's, so `libadwaita.css` scopes its widget rules to `toolbarview`, which only libadwaita windows have. Under a dark color-scheme preference, libadwaita apps keep libadwaita's dark palette until Elavo has a dark variant.
 
 For labwc, select `Elavo` in `rc.xml` (`<theme><name>Elavo</name></theme>`).
 
