@@ -65,14 +65,8 @@
     window.csd:backdrop {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
     window.csd.tiled, window.csd.tiled-top, window.csd.tiled-left, window.csd.tiled-right, window.csd.tiled-bottom {
-      --window-radius: 0px;
-      border-radius: 0;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 20px transparent; }
-    window.csd.maximized {
-      box-shadow: none; }
-    window.csd.fullscreen {
-      --window-radius: 0px;
-      border-radius: 0;
+    window.csd.maximized, window.csd.fullscreen {
       box-shadow: none; } }
 
 @media (prefers-color-scheme: light) {

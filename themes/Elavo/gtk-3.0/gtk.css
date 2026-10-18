@@ -26,14 +26,58 @@ decoration {
   border-top-right-radius: 12px; }
 
 .csd.maximized decoration,
-.csd.maximized decoration:backdrop {
+.csd.maximized decoration:backdrop,
+.csd.fullscreen decoration,
+.csd.fullscreen decoration:backdrop {
   border-radius: 12px 12px 0 0;
   box-shadow: none; }
 
 window.csd.maximized headerbar,
 window.csd.maximized headerbar:backdrop,
 window.csd.maximized .titlebar,
-window.csd.maximized .titlebar:backdrop {
+window.csd.maximized .titlebar:backdrop,
+window.csd.maximized headerbar.header-bar.titlebar,
+window.csd.fullscreen headerbar,
+window.csd.fullscreen headerbar:backdrop,
+window.csd.fullscreen .titlebar,
+window.csd.fullscreen .titlebar:backdrop,
+window.csd.fullscreen headerbar.header-bar.titlebar {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
+.csd.tiled decoration,
+.csd.tiled decoration:backdrop,
+.csd.tiled-top decoration,
+.csd.tiled-top decoration:backdrop,
+.csd.tiled-left decoration,
+.csd.tiled-left decoration:backdrop,
+.csd.tiled-right decoration,
+.csd.tiled-right decoration:backdrop,
+.csd.tiled-bottom decoration,
+.csd.tiled-bottom decoration:backdrop {
+  border-radius: 12px 12px 0 0; }
+
+window.csd.tiled headerbar,
+window.csd.tiled headerbar:backdrop,
+window.csd.tiled headerbar.header-bar.titlebar,
+window.csd.tiled .titlebar,
+window.csd.tiled .titlebar:backdrop,
+window.csd.tiled-top headerbar,
+window.csd.tiled-top headerbar:backdrop,
+window.csd.tiled-top .titlebar,
+window.csd.tiled-top .titlebar:backdrop,
+window.csd.tiled-left headerbar,
+window.csd.tiled-left headerbar:backdrop,
+window.csd.tiled-left .titlebar,
+window.csd.tiled-left .titlebar:backdrop,
+window.csd.tiled-right headerbar,
+window.csd.tiled-right headerbar:backdrop,
+window.csd.tiled-right .titlebar,
+window.csd.tiled-right .titlebar:backdrop,
+window.csd.tiled-bottom headerbar,
+window.csd.tiled-bottom headerbar:backdrop,
+window.csd.tiled-bottom .titlebar,
+window.csd.tiled-bottom .titlebar:backdrop {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px; }
 
