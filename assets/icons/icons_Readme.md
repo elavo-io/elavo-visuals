@@ -21,6 +21,7 @@ Icons in this folder and in the icon theme, `themes/elavo-icons`, that were sour
 | Telegram | `assets/icons/1024/apps/org.telegram.desktop.png` | Official [Telegram](https://telegram.org) logo | Telegram FZ-LLC | Trademark of Telegram; used for identification only |
 | Strawberry Music Player | `assets/icons/1024/apps/org.strawberrymusicplayer.strawberry.png` | Official [Strawberry Music Player](https://github.com/strawberrymusicplayer/strawberry) logo | Jonas Kvinge and Strawberry contributors | [GPL-3.0](https://github.com/strawberrymusicplayer/strawberry/blob/master/COPYING) |
 | Brave Browser | `assets/icons/1024/apps/com.brave.Browser.png` | Official [Brave](https://brave.com) logo | Brave Software, Inc. | Trademark of Brave; used for identification only |
+| Google Chrome | `assets/icons/1024/apps/com.google.Chrome.png` | Official [Google Chrome](https://www.google.com/chrome/) logo | Google LLC | Trademark of Google; used for identification only |
 | Steam | `assets/icons/1024/apps/com.valvesoftware.Steam.png` | Official [Steam](https://store.steampowered.com) logo | Valve Corporation | Trademark of Valve; used for identification only |
 | Proton-GE | `assets/icons/unsorted/proton-ge.png` | Proton logo | Valve Corporation | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | LocalSend | `assets/icons/1024/apps/org.localsend.localsend_app.png` | Official [LocalSend](https://github.com/localsend/localsend) logo | The LocalSend contributors | [Apache-2.0](https://github.com/localsend/localsend/blob/main/LICENSE) |
