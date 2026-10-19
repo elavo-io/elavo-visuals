@@ -44,7 +44,8 @@ decoration {
 }
 
 // A maximized or fullscreen window keeps its rounded top corners and loses
-// only the shadow. Adwaita squares them. Chromium and Electron sample
+// only the shadow, which GTK leaves no room for. Adwaita squares them.
+// Chromium and Electron sample
 // headerbar.header-bar.titlebar, so that node is named too.
 .csd.maximized decoration,
 .csd.maximized decoration:backdrop,
@@ -68,22 +69,28 @@ window.csd.fullscreen headerbar.header-bar.titlebar {
   border-top-right-radius: $elavo-window-radius;
 }
 
-// A pinned window keeps its top corners too. labwc reports a left or right
-// snap as tiled on that edge and the two edges perpendicular to it, so a
-// left snap is tiled-left, tiled-top, and tiled-bottom together. Electron
-// samples the generic .tiled class and headerbar.header-bar.titlebar.
-// Adwaita's hairline on those windows still applies.
+// A pinned window keeps its top corners and its shadow too. labwc reports
+// a left or right snap as tiled on that edge and the two edges
+// perpendicular to it, so a left snap is tiled-left, tiled-top, and
+// tiled-bottom together. Electron samples the generic .tiled class and
+// headerbar.header-bar.titlebar. Adwaita's tiled rules would draw only a
+// hairline; these outrank them.
 .csd.tiled decoration,
-.csd.tiled decoration:backdrop,
 .csd.tiled-top decoration,
-.csd.tiled-top decoration:backdrop,
 .csd.tiled-left decoration,
-.csd.tiled-left decoration:backdrop,
 .csd.tiled-right decoration,
+.csd.tiled-bottom decoration {
+  border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: $elavo-window-shadow;
+}
+
+.csd.tiled decoration:backdrop,
+.csd.tiled-top decoration:backdrop,
+.csd.tiled-left decoration:backdrop,
 .csd.tiled-right decoration:backdrop,
-.csd.tiled-bottom decoration,
 .csd.tiled-bottom decoration:backdrop {
   border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: $elavo-window-shadow-backdrop;
 }
 
 window.csd.tiled headerbar,

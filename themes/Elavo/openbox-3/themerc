@@ -21,7 +21,9 @@ window.button.spacing: 8
 window.titlebar.padding.width: 8
 window.titlebar.padding.height: 5
 
-# labwc draws one shadow layer, and only with <dropShadows> on in rc.xml.
+# labwc draws one shadow layer. These are the only shadow values the
+# compositor uses: the mods layer builds the shadow on maximized windows,
+# including ones that draw their own title bar, from the same pieces.
 window.active.shadow.size: 24
 window.active.shadow.color: #00000026
 window.inactive.shadow.size: 16
@@ -31,5 +33,6 @@ window.inactive.shadow.color: #00000014
 window.cornerRadius: 12
 window.maximizedCorners: yes
 window.dropShadows: yes
-window.dropShadowsOnTiled: no
+window.dropShadowsOnTiled: yes
+window.dropShadowsOnMaximized: yes
 window.blur.strength: 3

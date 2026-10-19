@@ -68,8 +68,8 @@ $button_radius: $elavo-control-radius;
 }
 
 // The window's corners and shadow, the same as the Elavo theme draws.
-// This sheet outranks the theme and libadwaita. Tiled, maximized, and
-// fullscreen windows keep the radius and lose the drop shadow.
+// This sheet outranks the theme and libadwaita, so tiled windows keep both
+// the radius and the drop shadow from here.
 @media (prefers-color-scheme: light) {
   window.csd {
     --window-radius: #{$elavo-window-radius};
@@ -78,15 +78,8 @@ $button_radius: $elavo-control-radius;
 
     &:backdrop { box-shadow: $elavo-window-shadow-backdrop; }
 
-    // A left or right snap is tiled on that edge and the two edges
-    // perpendicular to it, so every tiled class keeps the radius. The
-    // hairline stays in place of the drop shadow.
-    &.tiled, &.tiled-top, &.tiled-left, &.tiled-right, &.tiled-bottom {
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 20px transparent;
-    }
-
-    // Maximized and fullscreen keep the radius from above and lose only
-    // the shadow. libadwaita would square both.
+    // GTK gives a maximized or fullscreen window no room outside its edges,
+    // so a shadow there is never drawn. They keep the radius from above.
     &.maximized,
     &.fullscreen { box-shadow: none; }
   }

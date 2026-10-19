@@ -46,16 +46,20 @@ window.csd.fullscreen headerbar.header-bar.titlebar {
   border-top-right-radius: 12px; }
 
 .csd.tiled decoration,
-.csd.tiled decoration:backdrop,
 .csd.tiled-top decoration,
-.csd.tiled-top decoration:backdrop,
 .csd.tiled-left decoration,
-.csd.tiled-left decoration:backdrop,
 .csd.tiled-right decoration,
+.csd.tiled-bottom decoration {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
+
+.csd.tiled decoration:backdrop,
+.csd.tiled-top decoration:backdrop,
+.csd.tiled-left decoration:backdrop,
 .csd.tiled-right decoration:backdrop,
-.csd.tiled-bottom decoration,
 .csd.tiled-bottom decoration:backdrop {
-  border-radius: 12px 12px 0 0; }
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
 
 window.csd.tiled headerbar,
 window.csd.tiled headerbar:backdrop,
