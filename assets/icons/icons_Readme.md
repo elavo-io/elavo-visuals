@@ -11,6 +11,7 @@ Icons in this folder and in the icon theme, `themes/elavo-icons`, that were sour
 | Thunderbird | `assets/icons/1024/apps/org.mozilla.Thunderbird.png` | Imported from the official Thunderbird application | MZLA Technologies Corporation / Mozilla Foundation | [Mozilla Trademark Policy](https://www.mozilla.org/foundation/trademarks/policy/) |
 | Figma | `assets/icons/unsorted/figma.png` | Imported from the official Figma application | Figma, Inc. | Trademark of Figma; used for identification only |
 | Visual Studio Code | `assets/icons/1024/apps/com.visualstudio.code.png` | Imported from the official Visual Studio Code application | Microsoft Corporation | Trademark of Microsoft; used for identification only |
+| Google Chrome | `assets/icons/unsorted/google-chrome.png` | Imported from the official Google Chrome application on macOS | Google LLC | Trademark of Google; used for identification only |
 
 ### Third-party assets
 
