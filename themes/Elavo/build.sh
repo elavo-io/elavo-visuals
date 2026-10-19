@@ -46,4 +46,29 @@ for sheet in gtk libadwaita; do
   fi
 done
 
+radius=$(sed -n 's/^\$elavo-window-radius:[[:space:]]*\([0-9][0-9]*\)px;.*/\1/p' "$src/_elavo-tokens.scss")
+if [ -z "$radius" ]; then
+  echo "build.sh: \$elavo-window-radius is missing from _elavo-tokens.scss" >&2
+  exit 1
+fi
+themerc="$here/openbox-3/themerc"
+marker="# elavo-window-tokens"
+filtered=$(mktemp)
+awk -v marker="$marker" '
+  $0 == marker { skip = 1; next }
+  skip && $0 ~ /^window\.(cornerRadius|maximizedCorners|dropShadows|dropShadowsOnTiled|blur)/ { next }
+  skip && $0 == "" { skip = 0; next }
+  { print }
+' "$themerc" > "$filtered"
+mv "$filtered" "$themerc"
+cat >> "$themerc" <<EOF
+
+$marker
+window.cornerRadius: $radius
+window.maximizedCorners: yes
+window.dropShadows: yes
+window.dropShadowsOnTiled: no
+window.blur.strength: 3
+EOF
+
 echo "Built gtk-4.0/gtk.css, gtk-4.0/libadwaita.css, gtk-3.0/gtk.css"

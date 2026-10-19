@@ -11,7 +11,9 @@
 # client-side title-only bars: 30px tall, with 16px buttons 7px from the
 # top and 8px inside the 1px border.
 # labwc's bar is the title font's 20px plus the vertical padding on each
-# side. The title text is still open; the corner radius is in labwc's rc.xml.
+# side. The title text is still open. The window tokens below are written
+# from $elavo-window-radius by build.sh. The mods layer reads them, and
+# they win over rc.xml.
 
 window.button.width: 16
 window.button.height: 16
@@ -24,3 +26,10 @@ window.active.shadow.size: 24
 window.active.shadow.color: #00000026
 window.inactive.shadow.size: 16
 window.inactive.shadow.color: #00000014
+
+# elavo-window-tokens
+window.cornerRadius: 12
+window.maximizedCorners: yes
+window.dropShadows: yes
+window.dropShadowsOnTiled: no
+window.blur.strength: 3
