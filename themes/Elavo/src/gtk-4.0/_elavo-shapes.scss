@@ -45,6 +45,25 @@ spinbutton:not(.vertical) {
   min-height: $elavo-control-height - 2px;
 }
 
+// Search fields: a gray pill with no border, white while typing.
+entry.search {
+  min-height: $elavo-control-height + 4px;
+  padding: 0 10px;
+  border-color: transparent;
+  border-radius: 9999px;
+  background-color: $elavo-search-bg;
+  box-shadow: none;
+
+  &:focus-within {
+    border-color: transparent;
+    background-color: $elavo-control-bg;
+  }
+
+  > image {
+    opacity: 0.6;
+  }
+}
+
 spinbutton:not(.vertical) > text {
   padding: 0 6px;
 }
