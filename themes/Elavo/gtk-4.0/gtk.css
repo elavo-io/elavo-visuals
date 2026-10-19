@@ -4317,6 +4317,19 @@ entry,
 spinbutton:not(.vertical) {
   min-height: 22px; }
 
+entry.search {
+  min-height: 28px;
+  padding: 0 10px;
+  border-color: transparent;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.06);
+  box-shadow: none; }
+  entry.search:focus-within {
+    border-color: transparent;
+    background-color: #ffffff; }
+  entry.search > image {
+    opacity: 0.6; }
+
 spinbutton:not(.vertical) > text {
   padding: 0 6px; }
 
