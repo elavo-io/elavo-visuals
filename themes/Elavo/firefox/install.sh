@@ -1,6 +1,7 @@
 #!/bin/sh
 # Put the Elavo window buttons into every Firefox profile of this user: the
-# RPM's (~/.mozilla/firefox) and the Flatpak's (~/.var/app/org.mozilla.firefox).
+# Flatpak's (~/.var/app/org.mozilla.firefox), and an RPM's (~/.config/mozilla
+# in current releases, ~/.mozilla in older ones).
 # Safe to run again. A profile's own userChrome.css is kept; one @import line
 # is added at its top. Firefox applies the change when it next starts.
 set -eu
@@ -32,6 +33,7 @@ install_profile() {
 }
 
 for root in "${HOME}/.mozilla/firefox" \
+            "${XDG_CONFIG_HOME:-${HOME}/.config}/mozilla/firefox" \
             "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox" \
             "${HOME}/.var/app/org.mozilla.firefox/config/mozilla/firefox"; do
     [ -f "${root}/profiles.ini" ] || continue
