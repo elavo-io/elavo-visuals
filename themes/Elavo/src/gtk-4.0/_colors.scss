@@ -1,6 +1,6 @@
 // Elavo replaces upstream's _colors.scss. The variable names are the ones
 // _common.scss and _drawing.scss expect; the values come from the tokens.
-// Light only for now. Dark gets its own token file.
+// Dark compiles this again after _elavo-tokens-dark.scss.
 
 $base_color: $elavo-view-bg;
 $text_color: $elavo-text;
@@ -13,7 +13,7 @@ $selected_borders_color: darken($selected_bg_color, 10%);
 $selected_text_bg_color: transparentize($selected_bg_color, 0.7);
 $borders_color: $elavo-border;
 $alt_borders_color: $elavo-border-strong;
-$borders_edge: transparentize(white, 0.2);
+$borders_edge: if($variant == 'dark', rgba(255, 255, 255, 0.08), transparentize(white, 0.2));
 $link_color: darken($selected_bg_color, 5%);
 $link_visited_color: darken($selected_bg_color, 15%);
 $top_hilight: $borders_edge;
@@ -23,9 +23,9 @@ $menu_color: $elavo-popover-bg;
 $menu_selected_color: $elavo-row-hover;
 
 $scrollbar_bg_color: transparent;
-$scrollbar_slider_color: rgba(0, 0, 0, 0.35);
-$scrollbar_slider_hover_color: rgba(0, 0, 0, 0.5);
-$scrollbar_slider_active_color: rgba(0, 0, 0, 0.6);
+$scrollbar_slider_color: $elavo-scrollbar-slider;
+$scrollbar_slider_hover_color: $elavo-scrollbar-slider-hover;
+$scrollbar_slider_active_color: $elavo-scrollbar-slider-active;
 
 $warning_color: $elavo-warning;
 $error_color: $elavo-error;
@@ -57,7 +57,7 @@ $backdrop_base_color: $base_color;
 $backdrop_text_color: mix($text_color, $backdrop_base_color, 80%);
 $backdrop_bg_color: $bg_color;
 $backdrop_fg_color: mix($fg_color, $backdrop_bg_color, 60%);
-$backdrop_insensitive_color: darken($backdrop_bg_color, 20%);
+$backdrop_insensitive_color: if($variant == 'dark', lighten($backdrop_bg_color, 15%), darken($backdrop_bg_color, 20%));
 $backdrop_selected_fg_color: $fg_color;
 $backdrop_selected_bg_color: $elavo-backdrop-selection;
 $backdrop_borders_color: mix($borders_color, $bg_color, 80%);

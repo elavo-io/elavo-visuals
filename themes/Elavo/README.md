@@ -1,13 +1,15 @@
 # Elavo theme
 
-The GTK theme and labwc title-bar theme for Elavo. Light only for now.
+The GTK theme and labwc title-bar theme for Elavo. Light and dark.
 
 | Path | What it is |
 | --- | --- |
-| `gtk-4.0/gtk.css` | The GTK4 theme. Compiled; do not edit. |
-| `gtk-4.0/libadwaita.css` | Elavo for libadwaita apps such as Files. Compiled; do not edit. |
+| `gtk-4.0/gtk.css` | The GTK4 theme, light. Compiled; do not edit. |
+| `gtk-4.0/gtk-dark.css` | The GTK4 theme, dark. GTK loads this instead of `gtk.css` when the color scheme is dark. Compiled; do not edit. |
+| `gtk-4.0/libadwaita.css` | Elavo for libadwaita apps such as Files, light and dark. Compiled; do not edit. |
 | `gtk-4.0/assets/` | Check, radio, and slider art from GTK, and the window-button PNGs. |
-| `gtk-3.0/gtk.css` | GTK3 stopgap: GTK3's built-in Adwaita, Elavo's named colors, and the window buttons. Compiled. |
+| `gtk-3.0/gtk.css` | GTK3 stopgap, light: GTK3's built-in Adwaita, Elavo's named colors, and the window buttons. Compiled. |
+| `gtk-3.0/gtk-dark.css` | GTK3 stopgap, dark. Same idea, on Adwaita's dark sheet. Compiled. |
 | `openbox-3/` | labwc server-side decorations. |
 | `firefox/` | Window buttons for Firefox's own title bar, which ignores GTK's. `firefox/install.sh` adds them to every Firefox profile, Flatpak and RPM. The image runs it at login and whenever a profile is created. |
 | `src/` | The SCSS everything above is built from. |
@@ -24,7 +26,7 @@ libadwaita apps do not load `gtk-theme-name`. To style them, `~/.config/gtk-4.0/
 @import url("elavo-accent.css");
 ```
 
-That user stylesheet sits above every GTK4 app's own CSS, including Folio's, so `libadwaita.css` scopes its widget rules to `toolbarview`, which only libadwaita windows have. Under a dark color-scheme preference, libadwaita apps keep libadwaita's dark palette until Elavo has a dark variant.
+That user stylesheet sits above every GTK4 app's own CSS, including Folio's, so `libadwaita.css` scopes its widget rules to `toolbarview`, which only libadwaita windows have. The sheet carries both palettes, and each applies under its own `prefers-color-scheme`. libadwaita never loads `gtk-dark.css`, so this file is how those apps turn dark.
 
 For labwc, select `Elavo` in `rc.xml` (`<theme><name>Elavo</name></theme>`).
 
@@ -43,7 +45,7 @@ The sheet publishes every preset as `--elavo-accent-<name>` and `--elavo-accent-
 }
 ```
 
-`Elavo-mirror` is a symlink to that directory. Blue sets `gtk-theme` to `Elavo`. Any other color writes the file, then sets `gtk-theme` to whichever of `Elavo-user` and `Elavo-mirror` is not already selected. GTK follows the symlink and reloads the sheet. Both names are the light theme.
+`Elavo-mirror` is a symlink to that directory. Blue sets `gtk-theme` to `Elavo`. Any other color writes the file, then sets `gtk-theme` to whichever of `Elavo-user` and `Elavo-mirror` is not already selected. GTK follows the symlink and reloads the sheet. The user theme also has `gtk-dark.css`, importing Elavo's dark sheet and setting the same accent. GTK loads that file when the color scheme is dark, so a custom accent stays dark too.
 
 `~/.config/gtk-4.0/elavo-accent.css` is the file every app imports. Apps that load the theme pick up `--elavo-user-accent` from the theme reload above. libadwaita apps do not: they set their own theme to `Adwaita-empty`. The accent file names the preset for them, and a high-contrast change makes GTK re-read the import. Light and dark stay as they are.
 
@@ -57,7 +59,7 @@ toolbarview {
 }
 ```
 
-Blue omits the two `--elavo-user-accent` lines, so the fallback is the theme default. `toolbarview` is where libadwaita draws. `:root` covers the dock and other GTK apps. The pane also sets `accent-color` to the matching GNOME name, which is how libadwaita Flatpaks get an accent. A dark theme gets its own directory and symlink.
+Blue omits the two `--elavo-user-accent` lines, so the fallback is the theme default. `toolbarview` is where libadwaita draws. `:root` covers the dock and other GTK apps. The pane also sets `accent-color` to the matching GNOME name, which is how libadwaita Flatpaks get an accent. Dark is not a second theme name. It is `gtk-dark.css` beside `gtk.css`, and the dark half of `libadwaita.css`.
 
 The legacy named colors (`@theme_selected_bg_color`, `@accent_color`) cannot hold a `var()`. They are the compiled default. GTK3 has no `var()`. The user theme's `gtk-3.0/gtk.css` imports Elavo's GTK3 sheet and redefines `@theme_selected_bg_color`, `@theme_selected_fg_color`, the unfocused pair, and `@accent_color`. Use `var(--accent-bg-color)` in GTK4.
 
@@ -82,13 +84,17 @@ Both are libsass, the compiler GTK builds its own theme with.
 | `_drawing.scss` | GTK, unchanged. |
 | `_colors-public.scss` | GTK, with the accent-based named colors set to the compiled default. |
 | `_colors.scss` | Elavo. Replaces GTK's palette with the tokens, using GTK's variable names. |
-| `_elavo-tokens.scss` | Elavo colors, sizes, radii, shadows, and font. |
+| `_elavo-tokens.scss` | Elavo colors, sizes, radii, shadows, and font. The colors are the light palette. |
+| `_elavo-tokens-dark.scss` | The dark palette. Imported after the light tokens. |
 | `_elavo-accents.scss` | Accent presets, and the palette published as custom properties. |
 | `_elavo-functions.scss` | Replaces Sass's `darken`, `lighten`, `mix`, `transparentize`, `opacify`, `desaturate`, and `invert` so they also accept the accent variable. |
 | `_elavo-drawing.scss` | Redefines GTK's `button`, `entry`, `check`, `focus-ring`, and `headerbar_fill` mixins. |
 | `_elavo-shapes.scss` | Elavo metrics and accent placement, used by both sheets. |
 | `_elavo-faces.scss` | Button, entry, and check faces for libadwaita, which draws its own. |
 | `_elavo-window-buttons.scss` | The window buttons. |
+| `gtk-dark.scss` | Dark GTK4 entry. Same imports as `gtk.scss`, with the dark tokens. |
+| `libadwaita-dark.scss` | Dark half of the libadwaita sheet. `build.sh` appends it to the light half. |
+| `_elavo-libadwaita.scss` | The libadwaita rules both halves share. |
 
 To take a newer GTK release, diff its `gtk/theme/Default` against the tag above and carry the changes into `_common.scss` and `_drawing.scss`. The Elavo files sit beside them, so that diff stays small.
 

@@ -1,0 +1,17 @@
+// Elavo, dark. Builds gtk-4.0/gtk-dark.css.
+//
+// GTK loads this instead of gtk.css when the color scheme is dark.
+// The theme name stays Elavo.
+
+$variant: 'dark';
+$contrast: 'normal';
+
+@import 'elavo-functions';
+@import 'elavo-tokens';
+@import 'elavo-tokens-dark';
+@import 'colors';
+@import 'drawing';
+@import 'elavo-drawing';
+@import 'common';
+@import 'colors-public';
+@import 'elavo';

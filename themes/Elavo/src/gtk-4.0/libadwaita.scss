@@ -1,10 +1,10 @@
-// Elavo for libadwaita apps. Builds gtk-4.0/libadwaita.css.
+// Elavo for libadwaita apps, light half. build.sh concatenates this
+// with libadwaita-dark.scss into gtk-4.0/libadwaita.css.
 //
 // libadwaita does not load gtk-theme-name. The user's gtk-4.0/gtk.css
-// imports this file, and GTK applies it above libadwaita's own sheet.
-// Plain GTK apps load it too, so every rule here must match what the
-// Elavo theme already draws. Light only: under a dark preference
-// libadwaita apps keep libadwaita's dark palette until Elavo has one.
+// imports the concatenated file, and GTK applies it above libadwaita's
+// own sheet. Plain GTK apps load it too, so every rule here must match
+// what the Elavo theme already draws.
 
 $variant: 'light';
 $contrast: 'normal';
@@ -16,89 +16,4 @@ $contrast: 'normal';
 
 $button_radius: $elavo-control-radius;
 
-// The palette only. This sheet is imported by the user stylesheet, which
-// outranks the theme, so an accent on :root here would pin every GTK app
-// and a theme change could not recolor it. The default accent is set on
-// toolbarview, below, where libadwaita draws.
-:root {
-  @include elavo-accent-palette;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --window-bg-color: #{$elavo-window-bg};
-    --window-fg-color: #{$elavo-fg};
-    --view-bg-color: #{$elavo-view-bg};
-    --view-fg-color: #{$elavo-text};
-    --headerbar-bg-color: #{$elavo-headerbar-bg};
-    --headerbar-fg-color: #{$elavo-fg};
-    --headerbar-border-color: #{$elavo-fg};
-    --headerbar-backdrop-color: #{$elavo-headerbar-bg};
-    --headerbar-shade-color: #{$elavo-hairline};
-    --headerbar-darker-shade-color: rgba(0, 0, 0, 0.14);
-    --sidebar-bg-color: #{$elavo-sidebar-bg};
-    --sidebar-fg-color: #{$elavo-fg};
-    --sidebar-backdrop-color: #{$elavo-sidebar-bg};
-    --sidebar-border-color: #{$elavo-hairline};
-    --sidebar-shade-color: #{$elavo-hairline};
-    --secondary-sidebar-bg-color: #{$elavo-window-bg};
-    --secondary-sidebar-fg-color: #{$elavo-fg};
-    --secondary-sidebar-backdrop-color: #{$elavo-window-bg};
-    --secondary-sidebar-border-color: #{$elavo-hairline};
-    --secondary-sidebar-shade-color: #{$elavo-hairline};
-    --card-bg-color: #{$elavo-card-bg};
-    --card-fg-color: #{$elavo-fg};
-    --card-shade-color: #{$elavo-hairline};
-    --dialog-bg-color: #{$elavo-window-bg};
-    --dialog-fg-color: #{$elavo-fg};
-    --popover-bg-color: #{$elavo-popover-bg};
-    --popover-fg-color: #{$elavo-fg};
-    --popover-shade-color: #{$elavo-hairline};
-    --thumbnail-bg-color: #{$elavo-view-bg};
-    --thumbnail-fg-color: #{$elavo-fg};
-    --destructive-bg-color: #{$elavo-destructive};
-    --destructive-fg-color: #ffffff;
-    --success-bg-color: #{$elavo-success};
-    --success-fg-color: #ffffff;
-    --warning-bg-color: #{$elavo-warning};
-    --warning-fg-color: #ffffff;
-    --error-bg-color: #{$elavo-error};
-    --error-fg-color: #ffffff;
-  }
-}
-
-// The window's corners and shadow, the same as the Elavo theme draws.
-// This sheet outranks the theme and libadwaita, so tiled windows keep both
-// the radius and the drop shadow from here.
-@media (prefers-color-scheme: light) {
-  window.csd {
-    --window-radius: #{$elavo-window-radius};
-    border-radius: $elavo-window-radius;
-    box-shadow: $elavo-window-shadow;
-
-    &:backdrop { box-shadow: $elavo-window-shadow-backdrop; }
-
-    // GTK gives a maximized or fullscreen window no room outside its edges,
-    // so a shadow there is never drawn. They keep the radius from above.
-    &.maximized,
-    &.fullscreen { box-shadow: none; }
-  }
-}
-
-// Shapes are scoped to toolbarview, the container every libadwaita window
-// and dialog draws its content in. That keeps them off Folio's panel, dock,
-// and Lens, which GTK would otherwise let this sheet override.
-@media (prefers-color-scheme: light) {
-  toolbarview {
-    --accent-bg-color: var(--elavo-accent-#{$elavo-accent-default});
-    --accent-fg-color: var(--elavo-accent-#{$elavo-accent-default}-fg);
-    --accent-color: var(--accent-bg-color);
-    font-family: $elavo-font-family;
-
-    @import 'elavo-faces';
-    @import 'elavo-shapes';
-    @import 'elavo-window-buttons';
-  }
-}
-
-@import 'elavo-window-buttons';
+@import 'elavo-libadwaita';

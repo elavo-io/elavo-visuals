@@ -84,9 +84,13 @@
   @return linear-gradient(to bottom, $c, $c);
 }
 
-$_elavo_button_edge: rgba(0, 0, 0, 0.12);
-$_elavo_button_edge_bottom: rgba(0, 0, 0, 0.2);
-$_elavo_button_shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+$_elavo_button_edge: if($variant == 'dark', rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.12));
+$_elavo_button_edge_bottom: if($variant == 'dark', rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+$_elavo_button_shadow: if($variant == 'dark', 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.05));
+$_elavo_plain_hover: if($variant == 'dark', rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.025));
+$_elavo_plain_active: if($variant == 'dark', rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1));
+$_elavo_check_edge: if($variant == 'dark', rgba(255, 255, 255, 0.28), rgba(0, 0, 0, 0.22));
+$_elavo_check_edge_hover: if($variant == 'dark', rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
 $_elavo_colored_highlight: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
 
 @mixin _elavo-face($c, $tc, $layer: none) {
@@ -113,12 +117,12 @@ $_default_button_c: $elavo-control-bg;
   }
 
   @else if $t==hover {
-    @include _elavo-face($c, $tc, if($colored, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.025)));
+    @include _elavo-face($c, $tc, if($colored, rgba(255, 255, 255, 0.08), $_elavo_plain_hover));
     box-shadow: $_elavo_button_shadow;
   }
 
   @else if $t==active {
-    @include _elavo-face($c, $tc, if($colored, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.1)));
+    @include _elavo-face($c, $tc, if($colored, rgba(0, 0, 0, 0.15), $_elavo_plain_active));
     box-shadow: none;
   }
 
@@ -261,13 +265,13 @@ $_default_button_c: $elavo-control-bg;
     background-clip: border-box;
     background-color: if($checked, $c, $elavo-control-bg);
     background-image: if($checked, $_elavo_colored_highlight, none);
-    border-color: if($checked, transparent, rgba(0, 0, 0, 0.22));
+    border-color: if($checked, transparent, $_elavo_check_edge);
     box-shadow: if($checked, none, $_elavo_button_shadow);
     color: $tc;
   }
 
   @if $t==hover {
-    border-color: if($checked, transparent, rgba(0, 0, 0, 0.3));
+    border-color: if($checked, transparent, $_elavo_check_edge_hover);
   }
 
   @if $t==active {
@@ -279,7 +283,7 @@ $_default_button_c: $elavo-control-bg;
     box-shadow: none;
     background-color: if($checked, mix($c, $base_color, 45%), $insensitive_bg_color);
     background-image: none;
-    border-color: if($checked, transparent, rgba(0, 0, 0, 0.12));
+    border-color: if($checked, transparent, if($variant == 'dark', rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.12)));
     color: transparentize($tc, 0.2);
   }
 

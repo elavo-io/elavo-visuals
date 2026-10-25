@@ -1,0 +1,16 @@
+// Elavo for libadwaita apps, dark half. build.sh appends this to
+// libadwaita.css. libadwaita follows prefers-color-scheme and never
+// loads gtk-dark.css.
+
+$variant: 'dark';
+$contrast: 'normal';
+
+@import 'elavo-functions';
+@import 'elavo-tokens';
+@import 'elavo-tokens-dark';
+@import 'colors';
+@import 'elavo-drawing';
+
+$button_radius: $elavo-control-radius;
+
+@import 'elavo-libadwaita';

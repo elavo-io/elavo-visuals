@@ -1,0 +1,198 @@
+// Elavo for GTK3, a stopgap. gtk.scss and gtk-dark.scss both import this.
+//
+// GTK3 has no var(), so this is not a port of the GTK4 theme. It keeps
+// GTK3's built-in Adwaita for the widgets, exports Elavo's named colors
+// for apps that read them, and draws the window buttons. The accent is
+// the compiled default; a user accent reaches GTK3 only through
+// ~/.config/gtk-3.0/gtk.css. $variant and the Adwaita sheet are chosen
+// by the file that imports this one. That file also imports the tokens
+// and Adwaita's contained sheet.
+
+@define-color theme_bg_color #{$elavo-window-bg};
+@define-color theme_fg_color #{$elavo-fg};
+@define-color theme_base_color #{$elavo-view-bg};
+@define-color theme_text_color #{$elavo-text};
+@define-color theme_selected_bg_color #{$elavo-accent-bg-default};
+@define-color theme_selected_fg_color #{$elavo-accent-fg-default};
+@define-color theme_unfocused_bg_color #{$elavo-window-bg};
+@define-color theme_unfocused_fg_color #{$elavo-fg};
+@define-color theme_unfocused_selected_bg_color #{$elavo-accent-bg-default};
+@define-color theme_unfocused_selected_fg_color #{$elavo-accent-fg-default};
+@define-color borders #{$elavo-border};
+@define-color accent_color #{$elavo-accent-bg-default};
+
+window {
+  font-family: $elavo-font-family;
+}
+
+// The window's corners and shadow, as in GTK4. GTK3 cannot clip a window's
+// content, so the bottom corners stay square. Adwaita's rules for popup
+// windows are more specific and still apply.
+decoration {
+  border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: $elavo-window-shadow;
+
+  &:backdrop { box-shadow: $elavo-window-shadow-backdrop; }
+}
+
+.background .titlebar,
+.background .titlebar:backdrop {
+  border-top-left-radius: $elavo-window-radius;
+  border-top-right-radius: $elavo-window-radius;
+}
+
+// A maximized or fullscreen window keeps its rounded top corners and loses
+// only the shadow, which GTK leaves no room for. Adwaita squares them.
+// Chromium and Electron sample
+// headerbar.header-bar.titlebar, so that node is named too.
+.csd.maximized decoration,
+.csd.maximized decoration:backdrop,
+.csd.fullscreen decoration,
+.csd.fullscreen decoration:backdrop {
+  border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: none;
+}
+
+window.csd.maximized headerbar,
+window.csd.maximized headerbar:backdrop,
+window.csd.maximized .titlebar,
+window.csd.maximized .titlebar:backdrop,
+window.csd.maximized headerbar.header-bar.titlebar,
+window.csd.fullscreen headerbar,
+window.csd.fullscreen headerbar:backdrop,
+window.csd.fullscreen .titlebar,
+window.csd.fullscreen .titlebar:backdrop,
+window.csd.fullscreen headerbar.header-bar.titlebar {
+  border-top-left-radius: $elavo-window-radius;
+  border-top-right-radius: $elavo-window-radius;
+}
+
+// A pinned window keeps its top corners and its shadow too. labwc reports
+// a left or right snap as tiled on that edge and the two edges
+// perpendicular to it, so a left snap is tiled-left, tiled-top, and
+// tiled-bottom together. Electron samples the generic .tiled class and
+// headerbar.header-bar.titlebar. Adwaita's tiled rules would draw only a
+// hairline; these outrank them.
+.csd.tiled decoration,
+.csd.tiled-top decoration,
+.csd.tiled-left decoration,
+.csd.tiled-right decoration,
+.csd.tiled-bottom decoration {
+  border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: $elavo-window-shadow;
+}
+
+.csd.tiled decoration:backdrop,
+.csd.tiled-top decoration:backdrop,
+.csd.tiled-left decoration:backdrop,
+.csd.tiled-right decoration:backdrop,
+.csd.tiled-bottom decoration:backdrop {
+  border-radius: $elavo-window-radius $elavo-window-radius 0 0;
+  box-shadow: $elavo-window-shadow-backdrop;
+}
+
+window.csd.tiled headerbar,
+window.csd.tiled headerbar:backdrop,
+window.csd.tiled headerbar.header-bar.titlebar,
+window.csd.tiled .titlebar,
+window.csd.tiled .titlebar:backdrop,
+window.csd.tiled-top headerbar,
+window.csd.tiled-top headerbar:backdrop,
+window.csd.tiled-top .titlebar,
+window.csd.tiled-top .titlebar:backdrop,
+window.csd.tiled-left headerbar,
+window.csd.tiled-left headerbar:backdrop,
+window.csd.tiled-left .titlebar,
+window.csd.tiled-left .titlebar:backdrop,
+window.csd.tiled-right headerbar,
+window.csd.tiled-right headerbar:backdrop,
+window.csd.tiled-right .titlebar,
+window.csd.tiled-right .titlebar:backdrop,
+window.csd.tiled-bottom headerbar,
+window.csd.tiled-bottom headerbar:backdrop,
+window.csd.tiled-bottom .titlebar,
+window.csd.tiled-bottom .titlebar:backdrop {
+  border-top-left-radius: $elavo-window-radius;
+  border-top-right-radius: $elavo-window-radius;
+}
+
+// GTK's fallback title bar holds only the window buttons and the title,
+// so it is 30px, as in GTK4.
+headerbar.default-decoration,
+.titlebar.default-decoration {
+  min-height: 30px;
+  padding: 0 6px;
+}
+
+// GTK3 does not give the button box :hover when a child is hovered, so
+// each button lights on its own here.
+
+$_buttons: (close: close, minimize: minimize, maximize: maximize);
+
+headerbar button.titlebutton,
+.titlebar button.titlebutton {
+  min-width: $elavo-window-button-size;
+  min-height: $elavo-window-button-size;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: none;
+  color: transparent;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $elavo-window-button-size $elavo-window-button-size;
+  -gtk-icon-shadow: none;
+
+  image { opacity: 0; }
+
+  // The header bar's button box already puts 6px (its default spacing)
+  // between buttons.
+  + button.titlebutton { margin-left: 2px; }
+
+  // With the header bar's 6px padding, a 19px inset, as in GTK4 bars.
+  &:first-child { margin-left: 13px; }
+
+  // And 19px to the bar's next control, with its 6px spacing.
+  &:last-child { margin-right: 13px; }
+}
+
+// Chromium-based browsers lay out their own title bar. They read only the
+// header bar's padding and each button's margin, from a
+// headerbar.header-bar > windowcontrols > button.titlebutton path with no
+// siblings, so :first-child and :last-child never match there. A GTK3 app
+// has no windowcontrols node, so these rules reach only those browsers.
+// With the 6px padding and Chromium's fixed 6px between buttons, this is
+// the same 19px inset and 8px spacing, and 19px before the first tab. It
+// assumes Elavo's close, minimize, maximize order on the left.
+headerbar.header-bar windowcontrols button.titlebutton {
+  &.close { margin-left: 13px; }
+  &.minimize { margin-left: 2px; }
+  &.maximize { margin-left: 2px; margin-right: 19px; }
+}
+
+// 8px in the 30px fallback bar, as in GTK4.
+headerbar.default-decoration button.titlebutton:first-child,
+.titlebar.default-decoration button.titlebutton:first-child {
+  margin-left: 2px;
+}
+
+@each $class, $art in $_buttons {
+  headerbar button.titlebutton.#{$class},
+  .titlebar button.titlebutton.#{$class} {
+    background-image: url("assets/#{$art}-default-500px.png");
+
+    &:hover,
+    &:active {
+      background-image: url("assets/#{$art}-hover-500px.png");
+    }
+  }
+}
+
+headerbar button.titlebutton:backdrop,
+.titlebar button.titlebutton:backdrop,
+headerbar button.titlebutton:disabled,
+.titlebar button.titlebutton:disabled {
+  background-image: url("assets/close-defocused-500px.png");
+}

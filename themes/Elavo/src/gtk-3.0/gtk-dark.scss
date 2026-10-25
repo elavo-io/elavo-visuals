@@ -1,0 +1,9 @@
+// Elavo for GTK3, dark. Builds gtk-3.0/gtk-dark.css.
+// GTK3 loads this instead of gtk.css when the color scheme is dark.
+
+$variant: 'dark';
+
+@import 'elavo-tokens';
+@import 'elavo-tokens-dark';
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+@import 'elavo-gtk3';

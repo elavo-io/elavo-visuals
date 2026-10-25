@@ -1,0 +1,163 @@
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+@define-color theme_bg_color #242424;
+@define-color theme_fg_color #ebebeb;
+@define-color theme_base_color #1c1c1c;
+@define-color theme_text_color #f2f2f2;
+@define-color theme_selected_bg_color #0860f2;
+@define-color theme_selected_fg_color #ffffff;
+@define-color theme_unfocused_bg_color #242424;
+@define-color theme_unfocused_fg_color #ebebeb;
+@define-color theme_unfocused_selected_bg_color #0860f2;
+@define-color theme_unfocused_selected_fg_color #ffffff;
+@define-color borders rgba(255, 255, 255, 0.12);
+@define-color accent_color #0860f2;
+window {
+  font-family: Roboto, sans-serif; }
+
+decoration {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
+  decoration:backdrop {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
+
+.background .titlebar,
+.background .titlebar:backdrop {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
+.csd.maximized decoration,
+.csd.maximized decoration:backdrop,
+.csd.fullscreen decoration,
+.csd.fullscreen decoration:backdrop {
+  border-radius: 12px 12px 0 0;
+  box-shadow: none; }
+
+window.csd.maximized headerbar,
+window.csd.maximized headerbar:backdrop,
+window.csd.maximized .titlebar,
+window.csd.maximized .titlebar:backdrop,
+window.csd.maximized headerbar.header-bar.titlebar,
+window.csd.fullscreen headerbar,
+window.csd.fullscreen headerbar:backdrop,
+window.csd.fullscreen .titlebar,
+window.csd.fullscreen .titlebar:backdrop,
+window.csd.fullscreen headerbar.header-bar.titlebar {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
+.csd.tiled decoration,
+.csd.tiled-top decoration,
+.csd.tiled-left decoration,
+.csd.tiled-right decoration,
+.csd.tiled-bottom decoration {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
+
+.csd.tiled decoration:backdrop,
+.csd.tiled-top decoration:backdrop,
+.csd.tiled-left decoration:backdrop,
+.csd.tiled-right decoration:backdrop,
+.csd.tiled-bottom decoration:backdrop {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
+
+window.csd.tiled headerbar,
+window.csd.tiled headerbar:backdrop,
+window.csd.tiled headerbar.header-bar.titlebar,
+window.csd.tiled .titlebar,
+window.csd.tiled .titlebar:backdrop,
+window.csd.tiled-top headerbar,
+window.csd.tiled-top headerbar:backdrop,
+window.csd.tiled-top .titlebar,
+window.csd.tiled-top .titlebar:backdrop,
+window.csd.tiled-left headerbar,
+window.csd.tiled-left headerbar:backdrop,
+window.csd.tiled-left .titlebar,
+window.csd.tiled-left .titlebar:backdrop,
+window.csd.tiled-right headerbar,
+window.csd.tiled-right headerbar:backdrop,
+window.csd.tiled-right .titlebar,
+window.csd.tiled-right .titlebar:backdrop,
+window.csd.tiled-bottom headerbar,
+window.csd.tiled-bottom headerbar:backdrop,
+window.csd.tiled-bottom .titlebar,
+window.csd.tiled-bottom .titlebar:backdrop {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
+headerbar.default-decoration,
+.titlebar.default-decoration {
+  min-height: 30px;
+  padding: 0 6px; }
+
+headerbar button.titlebutton,
+.titlebar button.titlebutton {
+  min-width: 16px;
+  min-height: 16px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: none;
+  color: transparent;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  -gtk-icon-shadow: none; }
+  headerbar button.titlebutton image,
+  .titlebar button.titlebutton image {
+    opacity: 0; }
+  headerbar button.titlebutton + button.titlebutton,
+  .titlebar button.titlebutton + button.titlebutton {
+    margin-left: 2px; }
+  headerbar button.titlebutton:first-child,
+  .titlebar button.titlebutton:first-child {
+    margin-left: 13px; }
+  headerbar button.titlebutton:last-child,
+  .titlebar button.titlebutton:last-child {
+    margin-right: 13px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.close {
+  margin-left: 13px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.minimize {
+  margin-left: 2px; }
+
+headerbar.header-bar windowcontrols button.titlebutton.maximize {
+  margin-left: 2px;
+  margin-right: 19px; }
+
+headerbar.default-decoration button.titlebutton:first-child,
+.titlebar.default-decoration button.titlebutton:first-child {
+  margin-left: 2px; }
+
+headerbar button.titlebutton.close,
+.titlebar button.titlebutton.close {
+  background-image: url("assets/close-default-500px.png"); }
+  headerbar button.titlebutton.close:hover, headerbar button.titlebutton.close:active,
+  .titlebar button.titlebutton.close:hover,
+  .titlebar button.titlebutton.close:active {
+    background-image: url("assets/close-hover-500px.png"); }
+
+headerbar button.titlebutton.minimize,
+.titlebar button.titlebutton.minimize {
+  background-image: url("assets/minimize-default-500px.png"); }
+  headerbar button.titlebutton.minimize:hover, headerbar button.titlebutton.minimize:active,
+  .titlebar button.titlebutton.minimize:hover,
+  .titlebar button.titlebutton.minimize:active {
+    background-image: url("assets/minimize-hover-500px.png"); }
+
+headerbar button.titlebutton.maximize,
+.titlebar button.titlebutton.maximize {
+  background-image: url("assets/maximize-default-500px.png"); }
+  headerbar button.titlebutton.maximize:hover, headerbar button.titlebutton.maximize:active,
+  .titlebar button.titlebutton.maximize:hover,
+  .titlebar button.titlebutton.maximize:active {
+    background-image: url("assets/maximize-hover-500px.png"); }
+
+headerbar button.titlebutton:backdrop,
+.titlebar button.titlebutton:backdrop,
+headerbar button.titlebutton:disabled,
+.titlebar button.titlebutton:disabled {
+  background-image: url("assets/close-defocused-500px.png"); }

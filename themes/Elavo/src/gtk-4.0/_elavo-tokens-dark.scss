@@ -1,0 +1,30 @@
+// Elavo dark colors. Sizes, radii, shadows, and the font stay in
+// _elavo-tokens.scss. Import this after that file, with $variant: 'dark'.
+//
+// The window is the light foreground turned around. Views sit darker, so a
+// list or a text field recedes. Sidebars, cards, and buttons sit lighter,
+// so they read as raised. Text is the same gray the rest of Elavo uses
+// on a dark surface.
+
+$elavo-window-bg: #242424;
+$elavo-view-bg: #1c1c1c;
+$elavo-headerbar-bg: #242424;
+$elavo-sidebar-bg: #2c2c2e;
+$elavo-popover-bg: #323234;
+$elavo-card-bg: #2c2c2e;
+$elavo-fg: #ebebeb;
+$elavo-text: #f2f2f2;
+$elavo-border: rgba(255, 255, 255, 0.12);
+$elavo-border-strong: #6e6e70;
+$elavo-hairline: rgba(255, 255, 255, 0.1);
+$elavo-control-bg: #3a3a3c;
+$elavo-control-hover: rgba(255, 255, 255, 0.08);
+$elavo-control-pressed: rgba(255, 255, 255, 0.14);
+$elavo-search-bg: rgba(255, 255, 255, 0.08);
+$elavo-trough: rgba(255, 255, 255, 0.12);
+$elavo-row-hover: rgba(255, 255, 255, 0.06);
+$elavo-backdrop-selection: rgba(255, 255, 255, 0.12);
+$elavo-scrollbar-slider: rgba(255, 255, 255, 0.4);
+$elavo-scrollbar-slider-hover: rgba(255, 255, 255, 0.55);
+$elavo-scrollbar-slider-active: rgba(255, 255, 255, 0.7);
+$elavo-headerbar-shade-strong: rgba(0, 0, 0, 0.45);
