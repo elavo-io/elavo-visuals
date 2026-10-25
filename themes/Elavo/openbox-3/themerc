@@ -11,15 +11,39 @@
 # client-side title-only bars: 30px tall, with 16px buttons 7px from the
 # top and 8px inside the 1px border.
 # labwc's bar is the title font's 20px plus the vertical padding on each
-# side. The title text is still open. The window tokens below are written
-# from $elavo-window-radius by build.sh. The mods layer reads them, and
-# they win over rc.xml.
+# side. The title text is still open. build.sh writes the color block and
+# the window tokens below from the GTK tokens, and the mods layer reads
+# the tokens. They win over rc.xml.
+# themerc-dark is the same colors for a dark scheme. elavo-labwc-theme
+# selects it while the color scheme is prefer-dark.
 
 window.button.width: 16
 window.button.height: 16
 window.button.spacing: 8
 window.titlebar.padding.width: 8
 window.titlebar.padding.height: 5
+window.button.hover.bg.corner-radius: 8
+
+# elavo-window-colors
+window.active.title.bg.color: #f5f5f5
+window.inactive.title.bg.color: #f5f5f5
+window.active.label.text.color: #242424
+window.inactive.label.text.color: #2424248c
+window.active.border.color: #0000001f
+window.inactive.border.color: #0000001f
+window.button.hover.bg.color: #0000000d
+menu.items.bg.color: #ffffff
+menu.items.text.color: #242424
+menu.items.active.bg.color: #0000001a
+menu.items.active.text.color: #242424
+menu.separator.color: #0000001a
+menu.title.bg.color: #f5f5f5
+menu.title.text.color: #242424
+menu.border.color: #0000001f
+osd.bg.color: #ffffff
+osd.border.color: #0000001f
+osd.label.text.color: #242424
+# elavo-window-colors-end
 
 # labwc draws one shadow layer. These are the only shadow values the
 # compositor uses: the mods layer builds the shadow on maximized windows,

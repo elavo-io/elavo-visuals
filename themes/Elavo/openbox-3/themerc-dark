@@ -1,0 +1,21 @@
+# Dark labwc colors, written by build.sh from _elavo-tokens-dark.scss.
+# elavo-labwc-theme points ~/.config/labwc/themerc-override here while
+# the color scheme is prefer-dark. labwc reads it after themerc.
+window.active.title.bg.color: #242424
+window.inactive.title.bg.color: #242424
+window.active.label.text.color: #ebebeb
+window.inactive.label.text.color: #ebebeb8c
+window.active.border.color: #ffffff1f
+window.inactive.border.color: #ffffff1f
+window.button.hover.bg.color: #ffffff0f
+menu.items.bg.color: #323234
+menu.items.text.color: #ebebeb
+menu.items.active.bg.color: #ffffff1f
+menu.items.active.text.color: #ebebeb
+menu.separator.color: #ffffff1a
+menu.title.bg.color: #242424
+menu.title.text.color: #ebebeb
+menu.border.color: #ffffff1f
+osd.bg.color: #323234
+osd.border.color: #ffffff1f
+osd.label.text.color: #ebebeb

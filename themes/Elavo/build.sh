@@ -94,4 +94,96 @@ window.dropShadowsOnMaximized: yes
 window.blur.strength: 3
 EOF
 
+python3 - "$src/_elavo-tokens.scss" "$src/_elavo-tokens-dark.scss" "$themerc" "$here/openbox-3/themerc-dark" <<'PY'
+import re
+import sys
+
+light_path, dark_path, themerc_path, dark_out = sys.argv[1:5]
+
+
+def parse(path):
+    colors = {}
+    for line in open(path):
+        match = re.match(r"\$([A-Za-z0-9-]+):\s*([^;]+);", line)
+        if match:
+            colors[match.group(1)] = match.group(2).strip()
+    return colors
+
+
+def hex_of(value):
+    value = value.strip()
+    if value.startswith("#"):
+        return value.lower()
+    match = re.fullmatch(
+        r"rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([0-9.]+)\s*\)", value
+    )
+    if not match:
+        raise SystemExit(f"unrecognized color {value}")
+    red, green, blue = (int(match.group(i)) for i in range(1, 4))
+    alpha = int(round(float(match.group(4)) * 255))
+    if alpha >= 255:
+        return f"#{red:02x}{green:02x}{blue:02x}"
+    return f"#{red:02x}{green:02x}{blue:02x}{alpha:02x}"
+
+
+def block(colors):
+    header = hex_of(colors["elavo-headerbar-bg"])
+    foreground = hex_of(colors["elavo-fg"])
+    # The GTK theme has no unfocused title color. 55% of the foreground reads
+    # as the dim title an unfocused window uses.
+    dim = foreground + "8c"
+    border = hex_of(colors["elavo-border"])
+    hover = hex_of(colors["elavo-row-hover"])
+    chosen = hex_of(colors["elavo-backdrop-selection"])
+    popover = hex_of(colors["elavo-popover-bg"])
+    hairline = hex_of(colors["elavo-hairline"])
+    lines = [
+        f"window.active.title.bg.color: {header}",
+        f"window.inactive.title.bg.color: {header}",
+        f"window.active.label.text.color: {foreground}",
+        f"window.inactive.label.text.color: {dim}",
+        f"window.active.border.color: {border}",
+        f"window.inactive.border.color: {border}",
+        f"window.button.hover.bg.color: {hover}",
+        f"menu.items.bg.color: {popover}",
+        f"menu.items.text.color: {foreground}",
+        f"menu.items.active.bg.color: {chosen}",
+        f"menu.items.active.text.color: {foreground}",
+        f"menu.separator.color: {hairline}",
+        f"menu.title.bg.color: {header}",
+        f"menu.title.text.color: {foreground}",
+        f"menu.border.color: {border}",
+        f"osd.bg.color: {popover}",
+        f"osd.border.color: {border}",
+        f"osd.label.text.color: {foreground}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+light = parse(light_path)
+dark = dict(light)
+dark.update(parse(dark_path))
+
+start = "# elavo-window-colors"
+end = "# elavo-window-colors-end"
+text = open(themerc_path).read()
+chunk = start + "\n" + block(light) + end + "\n"
+if start not in text or end not in text:
+    raise SystemExit("themerc is missing the elavo-window-colors markers")
+text = re.sub(
+    re.escape(start) + r".*?" + re.escape(end) + r"\n",
+    chunk,
+    text,
+    count=1,
+    flags=re.S,
+)
+open(themerc_path, "w").write(text)
+open(dark_out, "w").write(
+    "# Dark labwc colors, written by build.sh from _elavo-tokens-dark.scss.\n"
+    "# elavo-labwc-theme points ~/.config/labwc/themerc-override here while\n"
+    "# the color scheme is prefer-dark. labwc reads it after themerc.\n"
+    + block(dark)
+)
+PY
+
 echo "Built gtk-4.0/gtk.css, gtk-4.0/gtk-dark.css, gtk-4.0/libadwaita.css, gtk-3.0/gtk.css, gtk-3.0/gtk-dark.css"

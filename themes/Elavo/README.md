@@ -10,7 +10,7 @@ The GTK theme and labwc title-bar theme for Elavo. Light and dark.
 | `gtk-4.0/assets/` | Check, radio, and slider art from GTK, and the window-button PNGs. |
 | `gtk-3.0/gtk.css` | GTK3 stopgap, light: GTK3's built-in Adwaita, Elavo's named colors, and the window buttons. Compiled. |
 | `gtk-3.0/gtk-dark.css` | GTK3 stopgap, dark. Same idea, on Adwaita's dark sheet. Compiled. |
-| `openbox-3/` | labwc server-side decorations. |
+| `openbox-3/` | labwc server-side decorations. `themerc` is the light palette and `themerc-dark` is the dark one, both written by `build.sh` from the GTK tokens. |
 | `firefox/` | Window buttons for Firefox's own title bar, which ignores GTK's. `firefox/install.sh` adds them to every Firefox profile, Flatpak and RPM. The image runs it at login and whenever a profile is created. |
 | `src/` | The SCSS everything above is built from. |
 | `build.sh` | Rebuilds the compiled CSS. |
