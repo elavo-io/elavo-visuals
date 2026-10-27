@@ -12,6 +12,12 @@ Icons in this folder and in the icon theme, `themes/elavo-icons`, that were sour
 | Figma | `assets/icons/unsorted/figma.png` | Imported from the official Figma application | Figma, Inc. | Trademark of Figma; used for identification only |
 | Visual Studio Code | `assets/icons/1024/apps/com.visualstudio.code.png` | Imported from the official Visual Studio Code application | Microsoft Corporation | Trademark of Microsoft; used for identification only |
 | Google Chrome | `assets/icons/unsorted/google-chrome.png` | Imported from the official Google Chrome application on macOS | Google LLC | Trademark of Google; used for identification only |
+| Brave Origin | `assets/icons/unsorted/brave-origin.png` | Imported from the official Brave Origin application | Brave Software, Inc. | Trademark of Brave; used for identification only |
+| Cursor | `assets/icons/unsorted/cursor.png` | Imported from the official Cursor application | Anysphere, Inc. | Trademark of Cursor; used for identification only |
+| GitHub | `assets/icons/unsorted/github.png` | Imported from the official GitHub application | GitHub, Inc. | Trademark of GitHub; used for identification only |
+| Microsoft Edge | `assets/icons/unsorted/microsoft-edge.png` | Imported from the official Microsoft Edge application | Microsoft Corporation | Trademark of Microsoft; used for identification only |
+| OpenPencil | `assets/icons/unsorted/openpencil.png` | Imported from the official [OpenPencil](https://github.com/open-pencil/open-pencil) application | Danila Poyarkov and OpenPencil contributors | [MIT](https://github.com/open-pencil/open-pencil/blob/master/LICENSE) |
+| OpenRCT2 | `assets/icons/unsorted/openrct2.png` | Imported from the official [OpenRCT2](https://github.com/OpenRCT2/OpenRCT2) application | IntelOrca and the OpenRCT2 contributors | [GPL-3.0](https://github.com/OpenRCT2/OpenRCT2/blob/develop/licence.txt) |
 
 ### Third-party assets
 
