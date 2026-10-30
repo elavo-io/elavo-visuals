@@ -4257,6 +4257,8 @@ read if you used those and something break with a version upgrade you're on your
 @define-color wm_button_active_color_a hsl(from #f5f5f5 h calc(s * 0.85) calc(l * 0.85));
 @define-color wm_button_active_color_b hsl(from #f5f5f5 h calc(s * 0.89) calc(l * 0.89));
 @define-color wm_button_active_color_c hsl(from #f5f5f5 h calc(s * 0.9) calc(l * 0.9));
+/* Panel menus. Separate from the dock, which paints the same mix itself. */
+@define-color elavo_panel_menu_bg rgba(245, 245, 245, 0.62);
 /* content view background such as thumbnails view in Photos or Boxes */
 @define-color content_view_bg #ffffff;
 /* Very contrasty background for text views (@theme_text_color foreground) */
@@ -4613,3 +4615,6 @@ headerbar.default-decoration,
 headerbar.elavo-title-only {
   min-height: 30px;
   padding: 0 6px; }
+
+popover.elavo-panel-dropdown > contents {
+  background-color: rgba(245, 245, 245, 0.62); }

@@ -26,3 +26,9 @@ headerbar.elavo-title-only {
   min-height: 30px;
   padding: 0 6px;
 }
+
+// The panel's menus. The panel's own stylesheet repeats this until it
+// moves here. The compositor blurs the wallpaper behind the fill.
+popover.elavo-panel-dropdown > contents {
+  background-color: $elavo-panel-menu-bg;
+}
