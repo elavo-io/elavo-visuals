@@ -4516,7 +4516,7 @@ treeview.view > rubberband, .content-view > rubberband {
   background-color: rgb(from var(--accent-bg-color) r g b / calc(alpha - 0.8)); }
 
 windowcontrols {
-  border-spacing: 8px; }
+  border-spacing: 9px; }
 
 windowcontrols.start:not(.empty) {
   margin-left: 13px;
@@ -4542,8 +4542,8 @@ windowcontrols > button.image-button:checked,
 windowcontrols > button.image-button:backdrop,
 windowcontrols > button.image-button:disabled,
 headerbar.default-decoration windowcontrols > button.image-button {
-  min-width: 16px;
-  min-height: 16px;
+  min-width: 14.4px;
+  min-height: 14.4px;
   padding: 0;
   margin: 0;
   border: none;
@@ -4554,7 +4554,7 @@ headerbar.default-decoration windowcontrols > button.image-button {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px 16px;
+  background-size: 14.4px 14.4px;
   transition: background-image 150ms ease; }
 
 windowcontrols > button > image,
@@ -4567,7 +4567,7 @@ headerbar.default-decoration windowcontrols > button > image {
   min-height: 0;
   padding: 0;
   margin: 0;
-  -gtk-icon-size: 16px;
+  -gtk-icon-size: 14.4px;
   background: none;
   box-shadow: none; }
 

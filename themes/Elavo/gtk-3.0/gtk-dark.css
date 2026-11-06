@@ -92,8 +92,8 @@ headerbar.default-decoration,
 
 headerbar button.titlebutton,
 .titlebar button.titlebutton {
-  min-width: 16px;
-  min-height: 16px;
+  min-width: 14.4px;
+  min-height: 14.4px;
   padding: 0;
   margin: 0;
   border: none;
@@ -103,14 +103,14 @@ headerbar button.titlebutton,
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px 16px;
+  background-size: 14.4px 14.4px;
   -gtk-icon-shadow: none; }
   headerbar button.titlebutton image,
   .titlebar button.titlebutton image {
     opacity: 0; }
   headerbar button.titlebutton + button.titlebutton,
   .titlebar button.titlebutton + button.titlebutton {
-    margin-left: 2px; }
+    margin-left: 3.75px; }
   headerbar button.titlebutton:first-child,
   .titlebar button.titlebutton:first-child {
     margin-left: 13px; }
@@ -122,15 +122,15 @@ headerbar.header-bar windowcontrols button.titlebutton.close {
   margin-left: 13px; }
 
 headerbar.header-bar windowcontrols button.titlebutton.minimize {
-  margin-left: 2px; }
+  margin-left: 3.75px; }
 
 headerbar.header-bar windowcontrols button.titlebutton.maximize {
-  margin-left: 2px;
+  margin-left: 3.75px;
   margin-right: 19px; }
 
 headerbar.default-decoration button.titlebutton:first-child,
 .titlebar.default-decoration button.titlebutton:first-child {
-  margin-left: 2px; }
+  margin-left: 3.75px; }
 
 headerbar button.titlebutton.close,
 .titlebar button.titlebutton.close {

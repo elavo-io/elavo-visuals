@@ -131,8 +131,8 @@ $_buttons: (close: close, minimize: minimize, maximize: maximize);
 
 headerbar button.titlebutton,
 .titlebar button.titlebutton {
-  min-width: $elavo-window-button-size;
-  min-height: $elavo-window-button-size;
+  min-width: 14.4px;
+  min-height: 14.4px;
   padding: 0;
   margin: 0;
   border: none;
@@ -142,14 +142,14 @@ headerbar button.titlebutton,
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: $elavo-window-button-size $elavo-window-button-size;
+  background-size: 14.4px 14.4px;
   -gtk-icon-shadow: none;
 
   image { opacity: 0; }
 
   // The header bar's button box already puts 6px (its default spacing)
   // between buttons.
-  + button.titlebutton { margin-left: 2px; }
+  + button.titlebutton { margin-left: 3.75px; }
 
   // With the header bar's 6px padding, a 19px inset, as in GTK4 bars.
   &:first-child { margin-left: 13px; }
@@ -168,8 +168,8 @@ headerbar button.titlebutton,
 // assumes Elavo's close, minimize, maximize order on the left.
 headerbar.header-bar windowcontrols button.titlebutton {
   &.close { margin-left: 13px; }
-  &.minimize { margin-left: 2px; }
-  &.maximize { margin-left: 2px; margin-right: 19px; }
+  &.minimize { margin-left: 3.75px; }
+  &.maximize { margin-left: 3.75px; margin-right: 19px; }
 }
 
 // 8px in the 30px fallback bar, as in GTK4.

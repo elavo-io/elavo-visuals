@@ -14,14 +14,14 @@
 }
 
 .titlebar-button {
-  padding-inline: 4px !important;
+  padding-inline: 4.5px !important;
 }
 
 .titlebar-button > .toolbarbutton-icon {
-  width: 16px !important;
-  height: 16px !important;
+  width: 14.4px !important;
+  height: 14.4px !important;
   background-color: transparent !important;
-  background-size: 16px 16px !important;
+  background-size: 14.4px 14.4px !important;
   -moz-context-properties: none !important;
   outline-offset: 2px;
 }

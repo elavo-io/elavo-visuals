@@ -1,7 +1,7 @@
 // Window buttons for title bars an app draws itself. labwc draws the
 // server-side ones from openbox-3/.
 //
-// 16px buttons, 8px apart. Hovering any of the three lights all three, and
+// 14.4px buttons, 9px apart. Hovering any of the three lights all three, and
 // the hover art fades over 150ms. That includes an unfocused window, which
 // otherwise shows the defocused art on every button. A disabled button
 // keeps the defocused art and does not take the hover.
@@ -13,7 +13,7 @@ $_buttons: (close: close, minimize: minimize, maximize: maximize);
 // padding plus 13px here. The same 19px separates the buttons from the
 // bar's next control: the bar's 6px spacing plus 13px.
 windowcontrols {
-  border-spacing: 8px;
+  border-spacing: 9px;
 }
 
 windowcontrols.start:not(.empty) {
@@ -44,8 +44,8 @@ windowcontrols > button.image-button:checked,
 windowcontrols > button.image-button:backdrop,
 windowcontrols > button.image-button:disabled,
 headerbar.default-decoration windowcontrols > button.image-button {
-  min-width: $elavo-window-button-size;
-  min-height: $elavo-window-button-size;
+  min-width: 14.4px;
+  min-height: 14.4px;
   padding: 0;
   margin: 0;
   border: none;
@@ -56,7 +56,7 @@ headerbar.default-decoration windowcontrols > button.image-button {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: $elavo-window-button-size $elavo-window-button-size;
+  background-size: 14.4px 14.4px;
   transition: background-image 150ms ease;
 }
 
@@ -70,7 +70,7 @@ headerbar.default-decoration windowcontrols > button > image {
   min-height: 0;
   padding: 0;
   margin: 0;
-  -gtk-icon-size: $elavo-window-button-size;
+  -gtk-icon-size: 14.4px;
   background: none;
   box-shadow: none;
 }
