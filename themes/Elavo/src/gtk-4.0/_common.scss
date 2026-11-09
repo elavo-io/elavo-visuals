@@ -14,6 +14,7 @@ $button_radius: $elavo-control-radius;
 $menu_radius: $elavo-menu-item-radius;
 $menu_margin: $menu_radius; //margin around menuitems & sidebar items
 $window_radius: $elavo-window-radius;
+$elavo-alert-radius: 20px; // message dialogs: a rounder, iPad-like card
 $popover_radius: $elavo-popover-radius;
 
 /***************
@@ -3601,47 +3602,71 @@ calendar {
 /***********
  * Dialogs *
  ***********/
-window.dialog.message { // Message Dialog styling
+window.dialog.message { // Message Dialog styling: a solid card with pill buttons
   .titlebar {
-    min-height: 20px;
+    min-height: 10px;
     background-image: none;
-    background-color: $bg_color;
+    background-color: transparent;
     border-style: none;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    box-shadow: none;
   }
 
   box.dialog-vbox.vertical {
-    border-spacing: 10px;
+    border-spacing: 16px;
+  }
+
+  // Primary text bold, secondary text dimmed.
+  box.dialog-vbox > box:first-child label {
+    &:first-child { font-weight: 700; font-size: 110%; }
+    &:not(:first-child) { opacity: 0.7; }
   }
 
   & label.title {
-    font-weight: 800;
-    font-size: 150%;
+    font-weight: 700;
   }
 
-  &.csd { // rounded bottom border styling for csd version
-    &.background {
-      // bigger radius for better antialiasing
-      border-bottom-left-radius: $window_radius+1;
-      border-bottom-right-radius: $window_radius+1;
+  &.csd.background {
+    background-color: $bg_color;
+    border-radius: $elavo-alert-radius;
+  }
+
+  .dialog-action-box {
+    margin: 0 16px 16px 16px;
+  }
+
+  .dialog-action-area {
+    border-spacing: 10px;
+  }
+
+  // Secondary action: neutral pill.
+  .dialog-action-area button {
+    min-height: 24px;
+    min-width: 96px;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    border: none;
+    outline-offset: 2px;
+    box-shadow: none;
+    background-image: none;
+    background-color: transparentize($fg_color, 0.88);
+    color: $fg_color;
+    font-weight: 600;
+
+    &:hover { background-color: transparentize($fg_color, 0.82); }
+    &:active { background-color: transparentize($fg_color, 0.74); }
+
+    // Primary action: the default or suggested button, in the accent color.
+    &.default, &.suggested-action {
+      background-color: $selected_bg_color;
+      color: $selected_fg_color;
+
+      &:hover { filter: brightness(1.08); }
+      &:active { filter: brightness(0.92); }
     }
 
-    .dialog-action-area button {
-      padding: 10px 14px; // labels are not vertically centered on message dialog, this is a workaround
-      border-radius: 0;
-      border-left-style: solid;
-      border-right-style: none;
-      border-bottom-style: none;
-
-      &:first-child{
-        border-left-style: none;
-        border-bottom-left-radius: 7px;
-      }
-
-      &:last-child {
-        border-bottom-right-radius: 7px;
-      }
+    &.destructive-action {
+      background-color: $destructive_color;
+      color: white;
     }
   }
 }
@@ -4209,7 +4234,7 @@ window {
     }
 
     &.dialog.message {
-      border-radius: $window_radius;
+      border-radius: $elavo-alert-radius;
       box-shadow: 0 1px 2px transparentize(black, 0.8),
                   0 0 0 1px transparentize($_wm_border, 0.1);
     }

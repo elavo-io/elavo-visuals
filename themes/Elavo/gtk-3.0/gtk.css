@@ -130,7 +130,7 @@ headerbar.header-bar windowcontrols button.titlebutton.maximize {
 
 headerbar.default-decoration button.titlebutton:first-child,
 .titlebar.default-decoration button.titlebutton:first-child {
-  margin-left: 3.75px; }
+  margin-left: 2px; }
 
 headerbar button.titlebutton.close,
 .titlebar button.titlebutton.close {
