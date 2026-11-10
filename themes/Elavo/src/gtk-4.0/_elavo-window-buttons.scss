@@ -86,8 +86,16 @@ windowcontrols > button:disabled {
   background-image: url("assets/close-defocused-500px.png");
 }
 
-@each $class, $art in $_buttons {
+// Maximize has two hover arts: one that offers to fill the screen, and
+// one that offers to restore a maximized window.
+$_hover: (close: close-hover, minimize: minimize-hover, maximize: maximize-hover-floating);
+
+@each $class, $art in $_hover {
   windowcontrols:hover > button.#{$class}:not(:disabled) {
-    background-image: url("assets/#{$art}-hover-500px.png");
+    background-image: url("assets/#{$art}-500px.png");
   }
+}
+
+window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+  background-image: url("assets/maximize-hover-maximized-500px.png");
 }

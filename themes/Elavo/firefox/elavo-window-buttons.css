@@ -51,7 +51,11 @@
   background-image: url("minimize-hover-500px.png") !important;
 }
 
-.titlebar-buttonbox:hover > .titlebar-max > .toolbarbutton-icon,
+/* Maximize shows while the window floats, Restore while it is maximized. */
+.titlebar-buttonbox:hover > .titlebar-max > .toolbarbutton-icon {
+  background-image: url("maximize-hover-floating-500px.png") !important;
+}
+
 .titlebar-buttonbox:hover > .titlebar-restore > .toolbarbutton-icon {
-  background-image: url("maximize-hover-500px.png") !important;
+  background-image: url("maximize-hover-maximized-500px.png") !important;
 }

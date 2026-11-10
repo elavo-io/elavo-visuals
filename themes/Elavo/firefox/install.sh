@@ -17,7 +17,8 @@ install_profile() {
     mkdir -p "${chrome}/elavo"
     cp -f "${here}/elavo-window-buttons.css" "${chrome}/elavo/"
     for name in close-default close-defocused close-hover minimize-default \
-                minimize-hover maximize-default maximize-hover; do
+                minimize-hover maximize-default maximize-hover-floating \
+                maximize-hover-maximized; do
         cp -fL "${art}/${name}-500px.png" "${chrome}/elavo/"
     done
 

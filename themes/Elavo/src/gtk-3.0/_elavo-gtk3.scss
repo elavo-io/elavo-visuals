@@ -178,6 +178,10 @@ headerbar.default-decoration button.titlebutton:first-child,
   margin-left: 2px;
 }
 
+// Maximize has two hover arts: one that offers to fill the screen, and
+// one that offers to restore a maximized window.
+$_hover: (close: close-hover, minimize: minimize-hover, maximize: maximize-hover-floating);
+
 @each $class, $art in $_buttons {
   headerbar button.titlebutton.#{$class},
   .titlebar button.titlebutton.#{$class} {
@@ -185,8 +189,16 @@ headerbar.default-decoration button.titlebutton:first-child,
 
     &:hover,
     &:active {
-      background-image: url("assets/#{$art}-hover-500px.png");
+      background-image: url("assets/#{map-get($_hover, $class)}-500px.png");
     }
+  }
+}
+
+window.maximized headerbar button.titlebutton.maximize,
+window.maximized .titlebar button.titlebutton.maximize {
+  &:hover,
+  &:active {
+    background-image: url("assets/maximize-hover-maximized-500px.png");
   }
 }
 

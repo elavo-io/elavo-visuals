@@ -554,7 +554,9 @@
     toolbarview windowcontrols:hover > button.minimize:not(:disabled) {
       background-image: url("assets/minimize-hover-500px.png"); }
     toolbarview windowcontrols:hover > button.maximize:not(:disabled) {
-      background-image: url("assets/maximize-hover-500px.png"); } }
+      background-image: url("assets/maximize-hover-floating-500px.png"); }
+    toolbarview window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+      background-image: url("assets/maximize-hover-maximized-500px.png"); } }
 
 windowcontrols {
   border-spacing: 9px; }
@@ -632,7 +634,10 @@ windowcontrols:hover > button.minimize:not(:disabled) {
   background-image: url("assets/minimize-hover-500px.png"); }
 
 windowcontrols:hover > button.maximize:not(:disabled) {
-  background-image: url("assets/maximize-hover-500px.png"); }
+  background-image: url("assets/maximize-hover-floating-500px.png"); }
+
+window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+  background-image: url("assets/maximize-hover-maximized-500px.png"); }
 :root {
   --elavo-accent-blue: #0860f2;
   --elavo-accent-blue-fg: #ffffff;
@@ -1189,7 +1194,9 @@ windowcontrols:hover > button.maximize:not(:disabled) {
     toolbarview windowcontrols:hover > button.minimize:not(:disabled) {
       background-image: url("assets/minimize-hover-500px.png"); }
     toolbarview windowcontrols:hover > button.maximize:not(:disabled) {
-      background-image: url("assets/maximize-hover-500px.png"); } }
+      background-image: url("assets/maximize-hover-floating-500px.png"); }
+    toolbarview window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+      background-image: url("assets/maximize-hover-maximized-500px.png"); } }
 
 windowcontrols {
   border-spacing: 9px; }
@@ -1267,4 +1274,7 @@ windowcontrols:hover > button.minimize:not(:disabled) {
   background-image: url("assets/minimize-hover-500px.png"); }
 
 windowcontrols:hover > button.maximize:not(:disabled) {
-  background-image: url("assets/maximize-hover-500px.png"); }
+  background-image: url("assets/maximize-hover-floating-500px.png"); }
+
+window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+  background-image: url("assets/maximize-hover-maximized-500px.png"); }

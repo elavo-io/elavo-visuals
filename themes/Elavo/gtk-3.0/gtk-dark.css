@@ -154,7 +154,12 @@ headerbar button.titlebutton.maximize,
   headerbar button.titlebutton.maximize:hover, headerbar button.titlebutton.maximize:active,
   .titlebar button.titlebutton.maximize:hover,
   .titlebar button.titlebutton.maximize:active {
-    background-image: url("assets/maximize-hover-500px.png"); }
+    background-image: url("assets/maximize-hover-floating-500px.png"); }
+
+window.maximized headerbar button.titlebutton.maximize:hover, window.maximized headerbar button.titlebutton.maximize:active,
+window.maximized .titlebar button.titlebutton.maximize:hover,
+window.maximized .titlebar button.titlebutton.maximize:active {
+  background-image: url("assets/maximize-hover-maximized-500px.png"); }
 
 headerbar button.titlebutton:backdrop,
 .titlebar button.titlebutton:backdrop,

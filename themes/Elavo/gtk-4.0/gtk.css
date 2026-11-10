@@ -4635,7 +4635,10 @@ windowcontrols:hover > button.minimize:not(:disabled) {
   background-image: url("assets/minimize-hover-500px.png"); }
 
 windowcontrols:hover > button.maximize:not(:disabled) {
-  background-image: url("assets/maximize-hover-500px.png"); }
+  background-image: url("assets/maximize-hover-floating-500px.png"); }
+
+window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
+  background-image: url("assets/maximize-hover-maximized-500px.png"); }
 
 headerbar.default-decoration,
 headerbar.elavo-title-only {
