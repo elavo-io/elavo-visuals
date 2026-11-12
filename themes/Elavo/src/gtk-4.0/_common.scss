@@ -3219,7 +3219,7 @@ frame,
 }
 
 frame {
-  border-radius: $window_radius;
+  border-radius: $elavo-inset-radius;
 
   > label {
     margin: 4px;
@@ -3451,7 +3451,7 @@ columnview.complex {
  **********************************************************************/
 
 .boxed-list {
-  border-radius: $window_radius;
+  border-radius: $elavo-inset-radius;
   border: 1px solid $borders_color;
 
   > row {
@@ -3464,13 +3464,13 @@ columnview.complex {
     }
 
     &:first-child {
-      border-top-left-radius: $window_radius;
-      border-top-right-radius: $window_radius;
+      border-top-left-radius: $elavo-inset-radius;
+      border-top-right-radius: $elavo-inset-radius;
     }
 
     &:last-child {
-      border-bottom-left-radius: $window_radius;
-      border-bottom-right-radius: $window_radius;
+      border-bottom-left-radius: $elavo-inset-radius;
+      border-bottom-right-radius: $elavo-inset-radius;
       border-bottom: none;
     }
   }
@@ -4006,7 +4006,7 @@ tooltip {
   }
 
   padding: 6px 10px;
-  border-radius: $window_radius;
+  border-radius: $elavo-inset-radius;
   box-shadow: none; // otherwise it gets inherited by windowframe.csd
 
   > box {

@@ -57,8 +57,8 @@
     --error-bg-color: #d93b36;
     --error-fg-color: #ffffff; }
   window.csd {
-    --window-radius: 12px;
-    border-radius: 12px;
+    --window-radius: 16px;
+    border-radius: 16px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
     window.csd:backdrop {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
@@ -697,8 +697,8 @@ window.maximized windowcontrols:hover > button.maximize:not(:disabled) {
     --error-bg-color: #d93b36;
     --error-fg-color: #ffffff; }
   window.csd {
-    --window-radius: 12px;
-    border-radius: 12px;
+    --window-radius: 16px;
+    border-radius: 16px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
     window.csd:backdrop {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }

@@ -79,7 +79,7 @@ marker="# elavo-window-tokens"
 filtered=$(mktemp)
 awk -v marker="$marker" '
   $0 == marker { skip = 1; next }
-  skip && $0 ~ /^window\.(cornerRadius|maximizedCorners|dropShadows|dropShadowsOnTiled|dropShadowsOnMaximized|blur)/ { next }
+  skip && $0 ~ /^window\.(cornerRadius|maximizedCorners|dropShadows|dropShadowsOnTiled|dropShadowsOnMaximized|clipCorners|clipApps|blur)/ { next }
   skip && $0 == "" { skip = 0; next }
   { print }
 ' "$themerc" > "$filtered"
@@ -91,6 +91,8 @@ window.maximizedCorners: yes
 window.dropShadows: yes
 window.dropShadowsOnTiled: yes
 window.dropShadowsOnMaximized: yes
+window.clipCorners: yes
+window.clipApps: org.telegram.desktop
 window.blur.strength: 3
 EOF
 

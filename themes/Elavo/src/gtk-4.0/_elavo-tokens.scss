@@ -47,7 +47,12 @@ $elavo-check-size: 14px;
 $elavo-check-radius: 4px;
 $elavo-switch-width: 36px;
 $elavo-switch-height: 20px;
-$elavo-window-radius: 12px;
+$elavo-window-radius: 16px;
+// Concentric corners: a panel inset from the window edge by
+// $elavo-window-inset rounds to the window radius less that inset, so the
+// two curves stay parallel (16 - 4 = 12).
+$elavo-window-inset: 4px;
+$elavo-inset-radius: $elavo-window-radius - $elavo-window-inset;
 $elavo-popover-radius: 14px;
 $elavo-menu-radius: 12px;
 $elavo-menu-item-radius: 6px;

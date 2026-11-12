@@ -15,21 +15,21 @@ window {
   font-family: Roboto, sans-serif; }
 
 decoration {
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
   decoration:backdrop {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
 
 .background .titlebar,
 .background .titlebar:backdrop {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px; }
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; }
 
 .csd.maximized decoration,
 .csd.maximized decoration:backdrop,
 .csd.fullscreen decoration,
 .csd.fullscreen decoration:backdrop {
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
   box-shadow: none; }
 
 window.csd.maximized headerbar,
@@ -42,15 +42,15 @@ window.csd.fullscreen headerbar:backdrop,
 window.csd.fullscreen .titlebar,
 window.csd.fullscreen .titlebar:backdrop,
 window.csd.fullscreen headerbar.header-bar.titlebar {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px; }
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; }
 
 .csd.tiled decoration,
 .csd.tiled-top decoration,
 .csd.tiled-left decoration,
 .csd.tiled-right decoration,
 .csd.tiled-bottom decoration {
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 7px 12px rgba(0, 0, 0, 0.13), 0 12px 20px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.15); }
 
 .csd.tiled decoration:backdrop,
@@ -58,7 +58,7 @@ window.csd.fullscreen headerbar.header-bar.titlebar {
 .csd.tiled-left decoration:backdrop,
 .csd.tiled-right decoration:backdrop,
 .csd.tiled-bottom decoration:backdrop {
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 7px 12px rgba(0, 0, 0, 0.08), 0 12px 20px transparent, 0 0 0 1px rgba(0, 0, 0, 0.12); }
 
 window.csd.tiled headerbar,
@@ -82,8 +82,8 @@ window.csd.tiled-bottom headerbar,
 window.csd.tiled-bottom headerbar:backdrop,
 window.csd.tiled-bottom .titlebar,
 window.csd.tiled-bottom .titlebar:backdrop {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px; }
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; }
 
 headerbar.default-decoration,
 .titlebar.default-decoration {

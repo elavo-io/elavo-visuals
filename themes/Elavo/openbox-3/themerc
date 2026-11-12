@@ -54,9 +54,11 @@ window.inactive.shadow.size: 16
 window.inactive.shadow.color: #00000014
 
 # elavo-window-tokens
-window.cornerRadius: 12
+window.cornerRadius: 16
 window.maximizedCorners: yes
 window.dropShadows: yes
 window.dropShadowsOnTiled: yes
 window.dropShadowsOnMaximized: yes
+window.clipCorners: yes
+window.clipApps: org.telegram.desktop
 window.blur.strength: 3
