@@ -39,3 +39,4 @@ Icons in this folder and in the icon theme, `themes/elavo-icons`, that were sour
 | Lutris | `assets/icons/1024/apps/net.lutris.Lutris.png` | Official [Lutris](https://github.com/lutris/lutris) logo | The Lutris contributors | [GPL-3.0](https://github.com/lutris/lutris/blob/master/LICENSE) |
 | Firefox | `assets/icons/1024/apps/org.mozilla.firefox.png` | Official [Firefox](https://www.mozilla.org/firefox/) logo | Mozilla Foundation | [Mozilla Trademark Policy](https://www.mozilla.org/foundation/trademarks/policy/) |
 | Grok Bot | `assets/icons/1024/apps/grok-bot.png` | Official Grok Bot logo | xAI Corp. | Trademark of xAI; used for identification only |
+| Claude Desktop | `assets/icons/1024/apps/com.anthropic.Claude.png` | Official [Claude](https://claude.ai) logo | Anthropic, PBC | Trademark of Anthropic; used for identification only |
